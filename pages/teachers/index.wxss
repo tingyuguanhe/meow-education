@@ -1,0 +1,190 @@
+/* pages/teachers/index.wxss */
+
+html{overflow: auto;height: 100%;}
+body{overflow: auto;height: 100%;}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: "";
+  clear: both;
+  height: 0;
+}
+.title{
+  position: fixed;
+  width:100%;
+  top:0;
+  left:0;
+  z-index: 100;
+}
+.list_title{
+  background: #FF4D61;
+  width:100%;
+  height: 110rpx;
+  line-height: 110rpx;
+  color: #fff;
+  font-weight: normal;
+  padding: 0 30rpx;
+}
+.list{
+  font-size: 32rpx;
+  margin: 220rpx 0 0 0;
+}
+.tea_item{
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #f1f1f1;
+  
+}
+.photo_img{
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+}
+.tea_info{
+  float: left;
+  width: 240rpx;
+  margin: 0 0 0 30rpx;
+  font-size: 32rpx;
+}
+.color_888{
+  color:#999;
+}
+.school{
+   margin: 10rpx 0 20rpx 0;
+}
+.courses{
+  float: left;
+  color: #FF4D61;
+  height: 170rpx;
+  width: 230rpx;
+  font-size: 34rpx;
+}
+.course_item{
+  margin: 0 16rpx 0 0;
+  font-size: 32rpx;
+}
+.search_nav{
+  height: 110rpx;
+  line-height: 110rpx;
+  width:100%;
+  background: #ff5e70;
+  top:100rpx;
+  left:0;
+  color:#fff;
+  font-size: 32rpx;
+}
+.search_nav .search_type{
+  float: left;
+  width: 33%;
+  text-align: center;
+  position: relative;
+}
+.search_icon{
+  width: 28rpx;
+  height: 16rpx;
+  margin: 0 0 0 10rpx;
+  display: inline-block;
+}
+.school_type{
+  border:1px solid #FF4D61;
+  padding: 1px 5px;
+  border-radius: 10px;
+  font-size: 28rpx;
+  color:#FF4D61;
+  margin: 0 0 0 10px;
+}
+/*加载更多  */
+
+.loading {
+  margin: 0 5px;
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  vertical-align: middle;
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+  background-size: 100%;
+}
+.loadmore {
+  width: 65%;
+  margin: 1.5em auto;
+  line-height: 1.6em;
+  font-size: 14px;
+  text-align: center;
+}
+.loadmore_tips {
+  display: inline-block;
+  vertical-align: middle;
+}
+.loadmore_tips_gray{
+  color: #ddd;
+  font-size: 30rpx;
+}
+.modal_box{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 220rpx;
+  left: 0;
+  background: #000;
+  filter:alpha(opacity=50);
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 200;
+  color: #fff;
+}
+.modal_dialog{
+  width: 100%;
+  position: fixed;
+  top: 220rpx;
+  left: 0;
+  height: 360rpx;
+  overflow: auto;
+  background: #f9f9f9;
+  z-index: 210;
+}
+
+.arrow{
+  position: absolute;
+  width:6px;
+  height:6px;
+  border-left:1px solid #fff;
+  border-bottom:1px solid #fff;
+  transform:rotate(-45deg);
+  left: 200rpx;
+  top: 42rpx;
+}
+
+.course_option{
+  border: 1px solid #f1f1f1;
+  padding: 20rpx 30rpx;
+}
+
+.noscroll{
+  top:0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: 0;
+} 
+
+
+@keyframes slidown{
+    from{
+        transform:  translateY(-100%);
+    }
+    to{
+        transform:  translateY(0%);
+    }
+}
+
+@keyframes slidup{
+    from{
+        transform:  translateY(0%);
+    }
+    to{
+        transform:  translateY(-100%);
+    }
+}
+

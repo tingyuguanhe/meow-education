@@ -1,0 +1,59 @@
+
+@import '../../my_style/common.wxss';
+.complain_form{
+  font-size: 32rpx;
+}
+.complain_form .section {
+  padding: 10px;
+}
+.complain_form .section .title{
+  color: #FF4D61;
+  margin: 0 0 6px 0;
+}
+.reason{
+  float: left;
+  padding: 4px 8px;
+  background: #e1e1e1;
+  border-radius: 2px;
+  margin: 0 6px 6px 0;
+  color:#777;
+}
+
+.complain_reasons .checkbox_active{
+  background: #FF4D61;
+  color:#fff;
+}
+.choose_img{
+  width: 60px;
+  height: 60px;
+  border: 2px dashed #ccc;
+  position: relative;
+  float: left;
+}
+.add_icon{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  margin: -20px 0 0 -20px;
+}
+.show_imgs{
+  position: relative;
+  float: left;
+  margin: 0 12px 0 0;
+}
+.delete_img_icon{
+  position:absolute;
+  width:22px;
+  height:22px;
+  right:-8px;
+  top:-6px;
+}
+.imgs_show_box{
+  float: left;
+}
+.add_imgs{
+  width: 62px;
+  height: 62px;
+}

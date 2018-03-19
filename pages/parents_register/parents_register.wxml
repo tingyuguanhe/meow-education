@@ -1,0 +1,220 @@
+<view class="login">
+
+<form name="form" bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section section_gap role_box clearfix">
+      <view class="role" bindtap="radioChange">
+        <text>我是老师</text>
+      </view>
+      <view class="role active">
+        <text>我是家长</text>
+      </view>
+  </view>
+  
+<!--基本信息  -->
+<view class="section">
+    <view class="section__title bg">
+    基本信息</view>
+    <view class="content">
+    
+    <view class="section_item">
+      <view class="section_label">您的称呼：</view>
+      <input name="name" class="tea_name" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="如：王女士／王先生" />
+    </view>
+    <view class="section_item">
+      <view class="section_label">您的电话：</view>
+      <input name="phone" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="用于家长及时和您沟通" />
+    </view>
+  </view>
+
+  <!--学生信息  -->
+  <view class="section">
+    <view class="section__title bg">
+    学生信息</view>
+    <view class="content">
+    
+    <!-- 补习科目  
+    <view class="section_item">
+      <view class="section_label">补习科目：</view>
+      <image class="arrow_right"src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="course" 
+bindchange="subjectBindPickerChange" range="{{courses}}" range-key="name">
+        <view class="picker">
+        {{courses[selectCourse].name}}
+        </view>
+        <input name="subject" class="hide" type="hidden" value="{{courses[selectCourse].id}}"/>
+      </picker>
+    </view> -->
+    <!--学生年级  -->
+    <view class="section_item">
+      <view class="section_label">学生年级：</view>
+      <view data-tarname="Register" class="level_select"  bindtap="selectDistrict">
+        <input class="tea_name" value="{{registerValue}}" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="请选择学生年级" />
+        <input class="hide" name="level" type='hidden' value='{{levelId}}'/>
+        <input class="hide" name="baselevel" type='hidden' value='{{baseLevelId}}'/>
+        <image class="arrow_right" src="../../images/arrow_select.png"></image>
+      </view>
+<view class="dialog-mask" style="z-index:11;visibility:{{addressMenuIsShow ? 'visible': 'hidden'}}" bindtap="hideCitySelected" />
+<view class="animation-element-wrapper" animation="{{animationAddressMenu}}" style="visibility:{{addressMenuIsShow ? 'visible':'hidden'}}">
+  <view class="animation-element">
+    <text class="left-bt" catchtap="cityCancel">取消</text>
+    <text class="right-bt" catchtap="citySure">确定</text>
+    <view class="line"></view> 
+    <picker-view class="area-picker-common" indicator-style = "height: 80rpx;" value="{{value}}" bindchange="cityChange">
+      <!--年级-->
+      <picker-view-column>
+         <view wx:for="{{baseLevels}}" wx:for-item="level" wx:key="{{index}}">{{level.name}}
+        </view>
+      </picker-view-column>
+      <!--级别-->
+      <picker-view-column>
+        <view wx:for="{{cities}}" wx:key="{{index}}">
+          {{item.name}}
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+    </view>
+    <!--学生基础  -->
+    <view class="section_item">
+      <view class="section_label">学生基础：</view>
+      <image class="arrow_right"src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="stuBasis" 
+bindchange="basisBindPickerChange" range="{{studentsBasis}}" range-key="name">
+        <view class="picker">{{studentsBasis[selectBasis].name}}</view>
+        <input name="basis" class="hide" type="hidden" value="{{studentsBasis[selectBasis].id}}"/>
+      </picker>
+    </view>
+<!-- 补习次数 -->
+<view class="section_item">
+      <view class="section_label">补习次数：</view>
+        <input name="times" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="如“周六、周日"/>  
+    </view>
+    <!--课时费用  -->
+    <view class="section_item">
+      <view class="section_label">课时费用：</view>
+      <input name="money" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="如“XX元1小时" />
+    </view>
+    </view>
+  </view>
+
+   <!--补习科目 -->
+  <view class="section">
+    <view class="section__title bg">
+    补习科目</view>
+    <view class="clearfix section content">
+      <checkbox-group name="subjects" bindchange="courseCheckboxChange">
+        <label wx:for="{{courses}}" wx:key="{{index}}">
+          <checkbox value="{{item.id}}" checked='{{item.checked}}'  hidden='true'/>
+          <view class="{{item.checked ? 'checkbox_item checkbox_active' : ' checkbox_item'}}">{{item.name}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <!--存在问题  -->
+  <view class="section">
+    <view class="section__title bg">
+    存在问题</view>
+    <view class="tip">请选择学生目前所存在的问题</view>
+    <view class="clearfix section content">
+      <checkbox-group name="student_types" bindchange="studentFeatureCheckboxChange">
+        <label wx:for="{{studentFeatures}}" wx:key="{{index}}">
+          <checkbox value="{{item.id}}" checked='{{item.checked}}'  hidden='true'/>
+          <view class="{{item.checked ? 'checkbox_item checkbox_active' : ' checkbox_item'}}">{{item.name}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+  <!--上课地点  -->
+  <view class="section">
+    <view class="section__title bg">
+    上课地点 </view>
+    <view bindtap="get_location">
+      <text class="tip">上课地点：</text><text class="get_location">点击获取地理位置</text>
+      <image class="ditu_img" src="../../images/ditu_icon.png"></image>
+    </view>
+
+    <!--显示地图  -->
+    <view class="{{address ? 'show' : 'hide' }}">
+      <view class="map_container"> 
+        <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map> 
+      </view> 
+      <view wx:if="{{!!address}}" class="rgc_info"> 
+        地址：<input name="address" value="{{address}}"/>
+      </view>
+  
+    </view>
+  </view>
+
+   <!--教师要求  -->
+
+  <view class="section">
+    <view class="section__title bg">
+    教师要求</view>
+    <view class="content">
+    
+    <!--教师资质  -->
+    <view class="section_item">
+      <view class="section_label">教师资质：</view>
+      <image class="arrow_right"src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="single2" 
+bindchange="requireBindPickerChange" range="{{requires}}" range-key="name">
+
+        <view class="picker">
+        {{requires[selectRequire].name}}
+        </view>
+        <input name="require" class="hide" type="hidden" value="{{requires[selectRequire].id}}"/>
+      </picker>
+    </view>
+    <!--教师性别  -->
+    <view class="section_item">
+      <view class="section_label">教师性别：</view>
+      <image class="arrow_right"src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="single2" 
+bindchange="bindPickerChange" range="{{sex}}" range-key="name">
+        <view class="picker">
+        {{sex[selectSex].name}}
+        </view>
+        <input name="teacher_sex" class="hide" type="hidden" value="{{sex[selectSex].id}}"/>
+      </picker>
+    </view>
+    
+    </view>
+  </view>
+
+
+  <!--教学特点  -->
+  <view class="section">
+    <view class="section__title bg">
+    教学特点</view>
+    <view class="tip">请选择您期望教师所具备的特点</view>
+    <view class="clearfix section content">
+      <checkbox-group name="teacher_types" bindchange="featureCheckboxChange">
+        <label wx:for="{{features}}" wx:for-item="feature" wx:key="{{index}}">
+          <checkbox value="{{feature.id}}" checked='{{feature.checked}}' hidden='true'/>
+          <view class="{{feature.checked ? 'checkbox_item checkbox_active' : ' checkbox_item'}}">{{feature.name}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+<!--其他备注  -->
+  <view class="section">
+    <view class="section__title bg">
+    其他备注</view>
+    <view class="content textarea_box">
+      <textarea style="height: 150px;" name="extra" placeholder="请填写您的上课时间或者其它详细描述"/>
+    </view>
+  </view>
+
+
+</view>
+  <view class="btn-area">
+    <button formType="submit" class="submit_complain_btn">提交</button>
+  </view>
+
+</form>
+
+</view>

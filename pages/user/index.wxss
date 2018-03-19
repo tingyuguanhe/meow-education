@@ -1,0 +1,40 @@
+page{
+  background: #f1f1f1;
+}
+.userinfo {
+	display: flex;
+	flex-direction: column;
+	padding: 50rpx 0;
+	align-items: center;
+	background: #FF4D61;
+}
+.userinfo-avatar {
+	width: 132rpx;
+	height: 132rpx;
+	margin: 20rpx;
+	border-radius: 50%;
+}
+
+.userinfo-nickname {
+	color: #fff;
+}
+
+.badge {
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	background: #ff0000;
+	color: #fff;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 8px;
+}
+.info_list{
+  
+  margin: 10px 0 0 0;
+  font-size: 34rpx;
+}
+.cells_item{
+  margin-bottom: 10px;
+  background: #fff;
+}

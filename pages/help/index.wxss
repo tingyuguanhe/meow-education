@@ -1,0 +1,58 @@
+@import "../../my_style/common.wxss";
+page{
+  background: #f1f1f1;
+}
+.weui-cell__ft_in-access{
+  padding-right:13px;
+  position:absolute;
+  height: 6px;
+  width: 4px;
+  right:10px;
+  top:16px;
+}
+.weui-cell__ft_in-access:after{
+  content:" ";
+  display:inline-block;
+  height:6px;
+  width:6px;
+  border-width:0 2px 2px 0;
+  border-color:#c8c8c8;
+  border-style:solid;
+  -webkit-transform:matrix(.71,.71,-.71,.71,0,0);
+  transform:matrix(.71,.71,-.71,.71,0,0); 
+}
+
+
+.help_cells .cell{
+  font-size: 32rpx;
+  padding: 0 10px;
+  background: #fff;
+}
+.cell .weui_cell_hd{
+  height: 40px;
+  line-height: 40px;
+  font-size: 34rpx;
+   border-bottom: 1px solid #ccc; 
+  position: relative;
+}
+.cell:last-child .weui_cell_hd{
+  border-bottom: none;
+}
+.cell_bd{
+  padding: 12px 0;
+  color:#999;
+  text-indent: 2rem;
+  margin: 0 0 6px 0;
+}
+.problem_feedback{
+  height: 45px;
+  line-height: 45px;
+  background: #fff;
+  position: fixed;
+  width:100%;
+  bottom: 0;
+  left:0;
+  text-align: center;
+  color:#FF4D61;
+  border-top: 1px solid #ccc; 
+}

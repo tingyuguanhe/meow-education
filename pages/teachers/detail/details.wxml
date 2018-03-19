@@ -1,0 +1,79 @@
+<import src="../../../components/tab_bar/my_tab_bar.wxml" />
+<view class="teacher_detail">
+<!--基本信息  -->
+<view class='teacher_base_intro '>
+
+  <view class="base_info clearfix">
+    <image class="teacher_img" src='/images/img.jpg'></image>
+    <view class="intro">
+      <view class="name">{{infos.last_name}}老师</view>
+      <view class="courses">
+        <text class="course_item_tip">课程：</text>
+        <block wx:for="{{infos.subjects}}" wx:key="index" wx:for-index="subjectIndex">
+          <view class="course_item">{{item.subject.name}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="complain" bindtap="applyComplain">
+      <image class="complain_icon" src='/images/complain.png'></image>
+      <view class="complain_text">投诉</view>
+    </view>
+  </view>
+  <view class="base_info_summarize clearfix">
+    <view class="date">
+      <image class="detail_icon" src="/images/clock.png"></image>
+      <text>{{infos.created_at}}</text>
+    </view>
+    <view class="like">
+      <image class="detail_icon" src="/images/tabbar/star.png"></image>
+      <text>{{infos.follower_count}}次收藏</text>
+    </view>
+    <view class="applys">
+      <image class="detail_icon" src="/images/apply.png"></image>
+      <text>{{infos.follower_count}}次申请</text>
+    </view>
+  </view>
+    <view class="masks clearfix">
+      <block wx:for="{{teacher_types}}" wx:for-index="teaTypeIndex" wx:key="index">
+        <view class="mask">{{item.teacher_type.name}}</view>
+      </block> 
+    </view>
+  </view>
+  <!-- 期望薪资 -->
+  <view class="reward">
+    <text class="tip">期望薪资：</text>
+    <text>{{infos.money}}元／小时</text>
+  </view>
+  <!--教育信息  -->
+  <view class="education">
+    <view class="education_item">
+      <text class="tip">教育经历：</text>
+      <text>{{infos.school.name}}</text>
+    </view>
+    <view class="education_item">
+      <text class="tip">高考分数：</text>
+      <text>{{infos.high_score}}</text>
+    </view>
+    <view class="education_item">
+      <text class="tip">学历：</text><text>{{ educational_background}}</text>
+    </view>
+    <view class="education_item">
+      <text class="tip">专业：</text><text>{{infos.profession}}</text>
+    </view>
+  </view>
+  <!--自我介绍  -->
+  <view class="self_intro_content">
+    <view class="self_intro self_info">自我介绍：</view>
+    <view class="self_info">{{infos.self_introduction}}</view>
+  </view>
+  <!--证明  -->
+  <view class="certificate">
+    <image class="certificate_img" src="/images/certificate.png"></image>
+  </view>  
+    <!--footer  -->
+    <view class="footer">
+    已经到底啦！快给王老师发送申请吧
+    </view>
+</view>
+
+<template is="mytabbar"/>

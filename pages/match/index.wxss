@@ -1,0 +1,37 @@
+/* pages/match/index.wxss */
+.title{
+  color: #FF4D61;
+  text-align: center;
+  margin: 20px 0;
+}
+.match_btn{
+  background: #FF4D61;
+  border-color: #FF4D61;
+  color:#fff;
+  font-size: 36rpx;
+  margin: 70px;
+  border-radius: 10px;
+}
+.color_box{
+  height: 90px;
+  width: 180px;
+  margin:0 auto;
+}
+.color_box .bg{
+  float: left;
+  width: 90px;
+  height: 90px;
+  opacity: 0.7;
+}
+.red{
+  background-color: #fd64fb; 
+}
+.green{
+  background-color: #36f435; 
+}
+.blue{
+  background-color: #00d8ff; 
+}
+.yellow{
+  background-color: #ffd800; 
+}

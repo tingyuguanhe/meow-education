@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/teachers/index",
+    "pages/teachers/detail/details",
+    "pages/students/index",
+    "pages/students/detail/details",
+    "pages/user/index",
+    "pages/match/index",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/parents_register/parents_register",
+    
+    "pages/complain/complain",
+    "pages/help/index",
+    "pages/about_us/index",
+    "pages/problem_feedback/index"
+    
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF4D61",
+    "navigationBarTitleText": "喵喵教育",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FF4D61",
+    "enablePullDownRefresh": true,
+    "disableScroll": false
+  },
+  "tabBar": {
+    "color": "#777",
+    "selectedColor": "#FF4D61",
+    "borderStyle": "black",
+    "backgroundColor": "#FAFAFA",
+    "list": [
+      {
+        "pagePath": "pages/teachers/index",
+        "iconPath": "images/tabbar/mmhtab_icon_mmh_n@2x.png",
+        "selectedIconPath": "images/tabbar/mmhtab_icon_mmh_s@2x.png",
+        "text": "找老师"
+      },
+      {
+        "pagePath": "pages/students/index",
+        "iconPath": "images/tabbar/mmhtab_icon_fl_n@2x.png",
+        "selectedIconPath": "images/tabbar/mmhtab_icon_fl_s@2x.png",
+        "text": "找学生"
+      },
+      {
+        "pagePath": "pages/match/index",
+        "iconPath": "images/tabbar/mmhtab_icon_gwc_n@2x.png",
+        "selectedIconPath": "images/tabbar/mmhtab_icon_gwc_s@2x.png",
+        "text": "智能匹配"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "images/tabbar/mmhtab_icon_me_n@2x.png",
+        "selectedIconPath": "images/tabbar/mmhtab_icon_me_s@2x.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "debug": true
+}

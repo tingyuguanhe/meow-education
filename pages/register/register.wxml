@@ -1,0 +1,152 @@
+<view class="login">
+
+<form name="form" bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section section_gap role_box clearfix">
+    <view class="role active">
+      <text>我是老师</text>
+    </view>
+    <view class="role" bindtap="radioChange">
+      <text>我是家长</text>
+    </view>
+  </view>
+  <!--基本信息  -->
+  <view>
+
+  <view class="section">
+    <view class="section__title bg">
+    您的头像</view>
+    <view class="user_photo">
+      <image class="photo" data-type="photo" catchtap="choosePhoto" src="{{photoUrl}}"></image>
+      <input name="head_image" value="{{photoUrl}}" class="hide" />
+    </view>
+  </view>
+  <view class="section">
+    <view class="section__title bg">
+    基本信息</view>
+    <view class="content">
+    
+    <view class="section_item">
+      <view class="section_label">您的姓氏：</view>
+      <input name="last_name" class="tea_name" placeholder-style="color:#ccc;font-size: 30rpx;" value="{{lastName}}" bindblur="setTeaLastName" placeholder="为保护私教隐私，请输入您的姓氏即可" />
+     
+    </view>
+    <view class="section_item">
+      <view class="section_label">您的电话：</view>
+      <input name="phone" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="用于教师及时和您沟通" />
+    </view>
+    <!--性别  -->
+    <view class="section_item">
+      <view class="section_label">您的性别：</view>
+      <image class="arrow_right"src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="sex" 
+bindchange="bindPickerChange" range="{{sex}}" range-key="name">
+        <view class="picker">{{sex[selectSex].name}}</view>
+         <input name="sex" class="hide" type="hidden" value="{{sex[selectSex].id}}" placeholder="您的性别"/> 
+      </picker>
+    </view>
+<!-- 教育经历 -->
+<view class="section_item">
+      <view class="section_label">教育经历：</view>
+      <image class="arrow_right" src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="school" 
+bindchange="bindPickerSchoolChange" range="{{schools}}" range-key="name">
+        <view class="picker">{{schools[selectSchool].name}}</view>
+        <input name="school" class="hide" type="hidden" value="{{schools[selectSchool].id}}"/>
+      </picker>
+    </view>
+
+    <!-- 学历 -->
+<view class="section_item">
+      <view class="section_label">您的学历：</view>
+      <image class="arrow_right" src="../../images/arrow_select.png"></image>
+      <picker mode="selector" data-name="educational_bg" 
+bindchange="bindPickerEduChange" range="{{educational_bg}}" range-key="name">
+        <view class="picker">{{educational_bg[selecteEduBg].name}}</view>
+        <input name="learn" class="hide" type="hidden" value="{{educational_bg[selecteEduBg].id}}"/>
+      </picker>
+    </view>
+    <!--专业  -->
+    <view class="section_item">
+      <view class="section_label">您的专业：</view>
+      <input name="profession" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="您的专业" />
+    </view>
+    <!--高考分数  -->
+    <view class="section_item">
+      <view class="section_label">高考分数：</view>
+      <input name="high_score" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="高考分数" />
+    </view>
+    <!--期望薪资  -->
+    <view class="section_item">
+      <view class="section_label">期望薪资：</view>
+      <input name="money" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="单位：元／小时" />
+    </view>
+    </view>
+  </view>
+  <!--教学科目  -->
+  <view class="section">
+    <view class="section__title bg">
+    教学科目</view>
+    <view class="clearfix section content">
+      <checkbox-group name="subjects" bindchange="checkboxChange">
+        <label wx:for="{{courses}}" wx:for-item="course" wx:key="{{index}}">
+          <checkbox value="{{course.id}}" checked='{{course.checked}}'  hidden='true'/>
+          <view class="{{course.checked ? 'checkbox_item checkbox_active' : ' checkbox_item'}}">{{course.name}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+  <!--教学特点  -->
+  <view class="section">
+    <view class="section__title bg">
+    教学特点</view>
+    <view class="clearfix section content">
+      <checkbox-group name="teacher_types" bindchange="featureCheckboxChange">
+        <label wx:for="{{features}}" wx:for-item="feature" wx:key="{{index}}">
+          <checkbox value="{{feature.id}}" checked='{{feature.checked}}'  hidden='true'/>
+          <view class="{{feature.checked ? 'checkbox_item checkbox_active' : ' checkbox_item'}}">{{feature.name}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+<!--其他备注  -->
+  <view class="section">
+    <view class="section__title bg">
+    其他备注</view>
+    <view class="content textarea_box">
+      <textarea style="height: 150px;" name="self_introduction" placeholder="请填写您的上课时间或者其它详细描述"/>
+    </view>
+  </view>
+
+  <!--相关证书  -->
+  <view class="section clearfix">
+    <view class="section__title bg">
+    相关证书</view>
+    <view class="content">
+   <view class="imgs_show_box clearfix">
+     <block wx:for="{{filePaths}}" wx:for-item="file" wx:key="index">
+      <view class="show_imgs">
+        <image class="add_imgs" data-type="certificate" catchtap="chooseImageTap" src="{{file.img}}" mode="aspecFill"></image>  
+        <view class="delete_img_icon" bindtap="deleteImg" data-imgid="{{file.id}}">
+          <image style="width:20px;height:20px;" src="../../images/delete.png"></image>
+        </view>
+        </view>
+      </block>
+      <input name="imgs" value="{{fileImgs}}" class="hide" />
+    </view> 
+    <view class="choose_img">
+      <image class="add_icon" src="../../images/add.png" bindtap="getImage"></image>
+    </view>
+    </view>
+  </view>
+</view>
+  <view class="btn-area">
+    <button formType="submit" class="submit_complain_btn">提交</button>
+  </view>
+</form>
+
+
+<!--家长  -->
+
+  
+</view>

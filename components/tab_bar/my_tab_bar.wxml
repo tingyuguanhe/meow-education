@@ -1,0 +1,17 @@
+<template name="mytabbar">
+  <view class="my_tab_bar clearfix">
+    <view class="my_share">
+    <button open-type="share" type="default" plain="true"> 
+      <image style="width: 21px; height: 21px" src="../../../images/tabbar/share.png"></image>
+      <view class="share_active">分享</view>
+      </button>
+    </view>
+    <view class="my_share">
+      <image style="width: 22px; height: 22px" src="../../../images/tabbar/star_gray.png"></image>
+      <view>收藏</view>
+    </view>
+    <view class="send_apply" bindtap="sendApply">
+      <text>发送申请</text>
+    </view>
+  </view>
+</template>

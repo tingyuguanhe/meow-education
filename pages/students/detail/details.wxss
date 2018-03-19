@@ -1,0 +1,123 @@
+/* pages/teachers/details.wxss */
+@import "../../../my_style/common.wxss";
+@import "../../../components/tab_bar/my_tab_bar.wxss";
+page{
+  height: 100%;
+  background: #f1f1f1;
+}
+.teacher_detail{
+  position: relative;
+}
+.teacher_base_intro{
+  padding: 10px;
+  background: #fff;
+}
+.base_info .teacher_img{
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+}
+.base_info .intro{
+  float: left;
+  font-size: 36rpx;
+  margin: 0 0 0 18rpx;
+}
+.base_info .intro .courses{
+  color: #FF4D61;
+  margin: 20px 0 0 0;
+}
+.complain{
+  float: right;
+  text-align: center;
+}
+.complain_icon{
+  width: 16px;
+  height: 16px;
+}
+.complain_text{
+  font-size: 28rpx;
+  margin-top: -8px; 
+  color: #FF4D61;
+}
+.base_info_summarize .date,.like,.applys{
+  width: 33%;
+  float: left;
+  font-size: 30rpx;
+  color:#777;
+  text-align: center;
+}
+.base_info_summarize .detail_icon{
+  width: 12px;
+  height: 12px;
+  margin: 0 3px 0 0;
+}
+.masks{
+  margin: 8px 0 0 0;
+}
+.masks .mask{
+  float: left;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  color:#777;
+  font-size: 30rpx;
+  margin: 0 4px 4px 0;
+}
+
+.base_info{
+  margin: 10px 0 0 0;
+  font-size: 32rpx;
+  padding: 5px 0;
+  background: #fff;
+}
+.base_info .item{
+  height: 26px;
+  line-height: 26px;
+  padding: 0 10px;
+}
+.base_info .tip{
+  color:#777; 
+}
+.education{
+  background: #fff;
+  font-size: 32rpx;
+  padding: 8px 10px;
+  margin: 8px 0 0 0;
+}
+.education_item{
+  height: 26px;
+  line-height: 26px;
+}
+.education .tip{
+  color:#777; 
+}
+
+.self_intro_content{
+  background: #fff;
+  font-size: 32rpx;
+  padding: 10px;
+  margin: 8px 0 0 0;
+}
+.self_intro{
+  color: #FF4D61;
+}
+.self_info{
+  height: 26px;
+  line-height: 26px;
+}
+.certificate{
+  background: #fff;
+  margin: 10px 0 0 0;
+  padding: 10px;
+
+}
+.certificate_img{
+  width: 160px;
+  height: 100px;
+}
+.footer{
+  font-size: 32rpx;
+  text-align: center;
+  color:#FF4D61;
+  margin: 10px 0 70px 0;
+}

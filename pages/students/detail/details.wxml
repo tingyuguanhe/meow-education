@@ -1,0 +1,76 @@
+<import src="../../../components/tab_bar/my_tab_bar.wxml" />
+<view class="teacher_detail">
+<!--基本信息  -->
+  <view class='teacher_base_intro '>
+    <view class="base_info clearfix">
+      <image class="teacher_img" src='/images/student.jpg'></image>
+      <view class="intro">
+        <view class="name">{{infos.name}}</view>
+        <view class="courses">{{infos.money}}/小时</view>
+      </view>
+      <view class="complain" bindtap="applyComplain">
+        <image class="complain_icon" src='/images/complain.png'></image>
+        <view class="complain_text">投诉</view>
+      </view>
+    </view>
+    <view class="base_info_summarize clearfix">
+      <view class="date">
+        <image class="detail_icon" src="/images/clock.png"></image>
+        <text>{{infos.created_at}}</text>
+      </view>
+      <view class="like">
+        <image class="detail_icon" src="/images/tabbar/star.png"></image>
+        <text>{{infos.follower_count}}次收藏</text>
+      </view>
+      <view class="applys">
+        <image class="detail_icon" src="/images/apply.png"></image>
+        <text>{{infos.follower_count}}次申请</text>
+      </view>
+    </view>
+    <view class="masks clearfix">
+      <block wx:for="{{infos.student_types}}" wx:for-index="studentTypeIndex" wx:key="index">
+        <view class="mask">{{item.student_type.name}}</view>
+      </block>
+    </view>
+  </view>
+  <!-- 期望薪资 -->
+  <view class="base_info">
+    <view class="item">
+      <text class="tip">年级：</text><text>{{infos.baselevel.name}} , {{infos.level.name}}</text>
+    </view>
+    <view class="item">
+      <text class="tip">基础：</text><text>{{infos.basis.name}}</text>
+    </view>
+  </view>
+  <!--教育信息  -->
+  <view class="education">
+    <view class="education_item">
+      <text class="tip">上课次数：</text><text>{{infos.times}}</text>
+    </view>
+    <view class="education_item">
+      <text class="tip">性别要求：</text>
+      <text wx:if="{{infos.teacher_sex == 1}}">男老师</text>
+      <text wx:else>女老师</text>
+    </view>
+    <view class="education_item">
+      <text class="tip">学历要求：</text><text>{{ infos.require.name }}</text>
+    </view>
+    
+    <view class="masks clearfix">
+      <block wx:for="{{infos.teacher_types}}" wx:for-index="teacherTypeIndex" wx:key="index">
+        <view class="mask">{{item.teacher_type.name}}</view>
+      </block>
+    </view>
+  </view>
+  <!--自我介绍  -->
+  <view class="self_intro_content">
+    <view class="self_intro self_info">自我介绍：</view>
+    <view class="self_info">{{infos.extra}}</view>
+  </view>
+  <!--footer  -->
+  <view class="footer">
+  已经到底啦！快给王同学发送申请吧
+  </view>
+</view>
+
+<template is="mytabbar"/>

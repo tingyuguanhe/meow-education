@@ -1,0 +1,12 @@
+<view>
+  <view class="title">欢迎使用智能匹配功能</view>
+  <view class="color_box clearfix">
+    <view class='bg red'></view>
+    <view class='bg green'></view>
+  </view>
+  <view  class="color_box clearfix">
+    <view class='bg blue'></view>
+    <view class='bg yellow'></view>
+  </view>  
+  <button class="match_btn">开始匹配</button>
+</view>

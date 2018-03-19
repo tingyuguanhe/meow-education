@@ -1,0 +1,68 @@
+
+<view class="title clearfix">
+  <view class="list_title">
+    <text>学生列表</text>
+  </view>
+  <!--筛选条件  -->
+  <view class="search_nav clearfix">
+    <view class="search_type">北京站</view> 
+    <view class="search_type" bindtap="selectCourse">
+      <text>{{searchByType}}</text>
+      <view class="arrow"></view>
+    </view>
+    <view class="search_type" bindtap="selectSchool">
+      <text>{{searchBySchool}}</text>
+      <view class="arrow"></view>
+    </view>
+  </view>
+</view>
+<!-- 列表 -->
+<view class="{{showModal ? 'list noscroll' : 'list'}}">
+    <block wx:for="{{stuList}}" wx:for-index="stuIndex" wx:for-item="student" wx:key="index">
+        <view class='clearfix tea_item'>
+            <navigator url="detail/details?id={{student.id}}" class="cover flex-wrp">
+                <image class="photo_img" src="{{student.img}}" mode="widthFix"></image>
+                <view class="tea_info">
+                  <view class="name">{{student.name}}</view>
+                  <view class="school color_888">地址：{{student.address}}</view>
+                  <view class="score color_888">补课时间：{{student.times}}</view>
+                </view>
+                <view class='courses'>
+                   <text wx:for="{{student.subjects}}" wx:for-index="courseIndex" wx:for-item="course" wx:key="index" class="course_item">{{course.subject.name}} </text> 
+                </view>
+            </navigator>
+        </view>
+    </block>
+</view>
+<!--上拉加载更多  -->
+<view class="loadmore" hidden="{{isHideLoadMore}}">
+  <view class="loading"></view>
+  <view class="loadmore_tips">正在加载</view>
+</view>
+<view class="loadmore" hidden="{{!isHideLoadMore}}">
+  <view class="loadmore_tips loadmore_tips_gray">已全部加载</view>
+</view>
+
+<!--课程筛选--弹出框  -->
+<view wx:if="{{showModal}}"  class="modal_dialog">
+  <block wx:for="{{coursesTypes}}" wx:for-index="courseIndex" wx:for-item="course_type" wx:key="index">
+    <view class="course_option" id="{{course_type.id}}" bindtap="searchByCourse" data-me="name">
+      <text>{{course_type.name}}</text>
+    </view>
+  </block>
+</view> 
+
+<!--遮罩层  -->
+ <view wx:if="{{showModal}}" class="modal_box" bindtap='closeModal'></view> 
+
+<!--学校筛选--弹出框  -->
+<view wx:if="{{showSchoolModal}}" class="modal_dialog">
+  <block wx:for="{{schoolsTypes}}" wx:for-index="schoolIndex" wx:for-item="school_type" wx:key="index">
+    <view class="course_option" id="{{school_type.id}}" bindtap="searchBySchool" data-me="name">
+      <text>{{school_type.name}}</text>
+    </view>
+  </block>
+</view> 
+
+<!--遮罩层  -->
+ <view wx:if="{{showSchoolModal}}" class="modal_box" bindtap='closeModal'></view> 
