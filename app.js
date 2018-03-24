@@ -1,8 +1,6 @@
 //app.js  管理整个程序的生命周期
 //app.js做为小程序的入口，里面有个App实例，每个小程序只会有一个App实例，小程序启动以后触发onLaunch函数执行，获取用户信息
 //app.js
-import { isRegister } from './api/api.js'
-
 App({
 
   onLaunch: function () {
@@ -12,15 +10,14 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-
-    // isRegister().then((res) => {
-    //   // console.log('是否注册',res);
+    // wx.login({
+    //   success: res => {
+    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //   }
     // })
+
+    this.register();
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -43,8 +40,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    register: false
+    userInfo: null
   },
   onShareAppMessage: function (options) {
     return {
@@ -55,6 +51,31 @@ App({
   },
   trim: function(s){
     return s.replace(/^\s + |\s + $/g, "");
+  },
+  register:function () {
+    // 登录
+    wx.login({
+      success: function (res) {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+
+          //发起网络请求 ?code=021NBHXd0NqsLA1AbAVd08QZXd0NBHXF
+          wx.request({
+            url: 'http://114.112.75.135:7000/api/login/',
+            data: {
+              code: res.code
+            },
+            success: function (res) {
+              wx.setStorageSync('Token', res.data.token)
+
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+
+    })
   }
   
 })

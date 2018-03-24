@@ -27,11 +27,16 @@
   height:76rpx;
   line-height: 75rpx;
   border-radius:0 110px 110px 0;
-  color:#fff;
   font-size:34rpx;
   text-align: center;
+  float: left;
+}
+.section .photo_label{
+  height: 90px;
+  line-height: 90px;
 }
 .user_photo{
+  float:left;
   width: 90px;
   height: 90px;
   border:1px solid #ccc;

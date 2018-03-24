@@ -4,17 +4,16 @@
  
   <!--基本信息  -->
   <view>
-  <view class="section">
-    <view class="section__title bg">
-    您的头像</view>
+  <view class="section clearfix">
+    <view class="section__title photo_label">
+    您的头像:</view>
     <view class="user_photo">
       <image class="photo" data-type="photo" catchtap="choosePhoto" src="{{photoUrl}}"></image>
-    
+  
     </view>
   </view>
-  <view class="section">
-    <view class="section__title bg">
-    基本信息</view>
+  <view class="section clearfix">
+    
     <view class="content">
     
     <view class="section_item">
