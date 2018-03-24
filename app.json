@@ -2,6 +2,8 @@
   "pages": [
     "pages/teachers/index",
     "pages/teachers/detail/details",
+    "pages/tea_publish/details",
+    "pages/stu_publish/details",
     "pages/students/index",
     "pages/students/detail/details",
     "pages/user/index",
@@ -11,12 +13,13 @@
     "pages/login/login",
     "pages/register/register",
     "pages/parents_register/parents_register",
-    
+    "pages/collect/index",
+    "pages/apply/index",
     "pages/complain/complain",
     "pages/help/index",
     "pages/about_us/index",
-    "pages/problem_feedback/index"
-    
+    "pages/update_teacher/index",
+    "pages/update_student/index"
     
   ],
   "window": {

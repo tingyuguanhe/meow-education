@@ -1,6 +1,6 @@
 /* pages/teachers/details.wxss */
-@import "../../../my_style/common.wxss";
-@import "../../../components/tab_bar/my_tab_bar.wxss";
+@import "../../my_style/common.wxss";
+@import "../../components/tab_bar2/my_tab_bar.wxss";
 page{
   height: 100%;
   background: #f1f1f1;
@@ -26,19 +26,7 @@ page{
   color: #FF4D61;
   margin: 20px 0 0 0;
 }
-.complain{
-  float: right;
-  text-align: center;
-}
-.complain_icon{
-  width: 16px;
-  height: 16px;
-}
-.complain_text{
-  font-size: 28rpx;
-  margin-top: -8px; 
-  color: #FF4D61;
-}
+
 .base_info_summarize .date,.like,.applys{
   width: 33%;
   float: left;
@@ -100,7 +88,7 @@ page{
 }
 .certificate{
   background: #fff;
-  margin: 10px 0 0 0;
+  margin: 10px 0 65px 0;
   padding: 10px;
 }
 .certificate_img{
@@ -108,12 +96,7 @@ page{
   height: 100px;
   margin: 0 0 0 10px;
 }
-.footer{
-  font-size: 32rpx;
-  text-align: center;
-  color:#FF4D61;
-  margin: 10px 0 70px 0;
-}
+
 .course_item_tip{
    float: left;
 }

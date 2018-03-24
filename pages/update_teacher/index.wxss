@@ -1,0 +1,131 @@
+/* pages/login/login.wxss */
+@import "../../my_style/common.wxss";
+.role_box{
+  width:76%;
+}
+.role{
+  float: left;
+  background: #ddd;
+  width: 260rpx;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.role.active{
+  background: #FF4D61;
+  color:#fff;
+}
+.role:last-child{
+  float: right;
+}
+
+.section{
+  margin: 20px auto 0 auto;
+}
+.section .section__title{
+  width:220rpx;
+  height:76rpx;
+  line-height: 75rpx;
+  border-radius:0 110px 110px 0;
+  color:#fff;
+  font-size:34rpx;
+  text-align: center;
+}
+.user_photo{
+  width: 90px;
+  height: 90px;
+  border:1px solid #ccc;
+  margin:10px 0 0 10px;
+}
+.photo{
+  width: 90px;
+  height: 90px;
+}
+.section_item{
+  padding:0 10px;
+  margin:10px 0 0 0;
+  border:1px solid #FF4D61;
+  height:34px;
+  font-size:32rpx;
+  line-height:34px;
+  border-radius:30px;
+  position: relative;
+}
+.section_item input{
+  height: 34px;
+  line-height: 34px;
+  color:#333;
+}
+.section_item .section_label{
+  margin: 0 0 0 20rpx;
+  float: left;
+}
+.arrow_right{
+  position: absolute;
+  right: 10px;
+  top:8px;
+  width:8px;
+  height:14px;
+}
+
+.checkbox_item{
+  float:left;
+  padding:5px 12px;
+  border:1px solid #e1e1e1;
+  border-radius:50px;
+  margin:0 6px 6px 0;
+  color:#777;
+  font-size:32rpx;
+}
+.content{
+  padding: 0 10px;
+}
+.section .checkbox_active{
+  background: #FF4D61;
+  border-color:#FF4D61;
+  color:#fff;
+}
+textarea{
+  width: 100%;
+  border:1px dashed #FF4D61;
+  margin: 20px 0 0 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.choose_img{
+  width: 60px;
+  height: 60px;
+  border: 2px dashed #ccc;
+  position: relative;
+  float: left;
+  margin: 20px 0 0 0;
+}
+.add_icon{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  margin: -20px 0 0 -20px;
+}
+.show_imgs{
+  position: relative;
+  float: left;
+  margin: 0 12px 0 0;
+}
+.delete_img_icon{
+  position:absolute;
+  width:22px;
+  height:22px;
+  right:-8px;
+  top:-6px;
+}
+.imgs_show_box{
+  float: left;
+  margin: 20px 0 0 0;
+}
+.add_imgs{
+  width: 62px;
+  height: 62px;
+}

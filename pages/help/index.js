@@ -1,5 +1,5 @@
+import { getHelps } from '../../api/api.js'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getHelpsList();
   },
 
   /**
@@ -83,6 +83,14 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  getHelpsList: function(){
+    getHelps().then((res)=>{
+      console.log(res);
+      this.setData({
+        helps: res.results
+      })
+    })
   },
   showAnswer: function(e){
     var index = e.currentTarget.dataset.index;

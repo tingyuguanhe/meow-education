@@ -5,12 +5,12 @@
   </view>
   <!--筛选条件  -->
   <view class="search_nav clearfix">
-    <view class="search_type">{{city}}站</view> 
-    <view class="search_type" bindtap="selectCourse">
-      <text>{{searchByType}}</text>
+    <view class="search_type search_type_station">{{city}}站</view> 
+    <view class="search_type search_type_course" bindtap="showCoursesModal">
+      <text>{{courseName}}</text>
       <view class="arrow"></view>
     </view>
-    <view class="search_type" bindtap="selectSchool">
+    <view class="search_type search_type_school" bindtap="showSchoolsModal">
       <text>{{schoolName}}</text>
       <view class="arrow"></view>
     </view>
@@ -25,7 +25,7 @@
                 <view class="tea_info">
                   <view class="name">
                     <text>{{teacher.last_name}}老师</text>
-                    <text class="school_type" wx:if="{{!!teacher.school_type}}">{{teacher.school_type}}</text>  
+                    <text class="school_type">{{teacher.school.level}}</text>  
                   </view>
                   <view class="school color_888">{{teacher.school.name}}</view>
                   <view class="score color_888">高考{{teacher.high_score}}分</view>
@@ -46,9 +46,9 @@
   <view class="loadmore_tips loadmore_tips_gray">已全部加载</view>
 </view>
 <!--课程筛选--弹出框  -->
-<view wx:if="{{showModal}}"  class="modal_dialog">
+<view wx:if="{{showModal}}" class="modal_dialog">
   <block wx:for="{{coursesTypes}}" wx:for-index="courseIndex" wx:for-item="course_type" wx:key="index">
-    <view class="course_option" id="{{course_type.id}}" bindtap="searchByCourse" data-me="name" data-id="id">
+    <view class="course_option" id="{{course_type.id}}" bindtap="selectCourse" data-me="name" data-id="id">
       <text>{{course_type.name}}</text>
     </view>
   </block>
@@ -60,7 +60,7 @@
 <!--学校筛选--弹出框  -->
 <view wx:if="{{showSchoolModal}}" class="modal_dialog">
   <block wx:for="{{schoolsTypes}}" wx:for-index="schoolIndex" wx:for-item="school_type" wx:key="index">
-    <view class="course_option" id="{{school_type.id}}" bindtap="searchBySchool" data-me="name">
+    <view class="course_option" id="{{school_type.id}}" bindtap="selectSchool" data-me="name">
       <text>{{school_type.name}}</text>
     </view>
   </block>

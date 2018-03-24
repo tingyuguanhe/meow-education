@@ -1,6 +1,6 @@
 /* pages/teachers/details.wxss */
-@import "../../../my_style/common.wxss";
-@import "../../../components/tab_bar/my_tab_bar.wxss";
+@import "../../my_style/common.wxss";
+@import "../../components/tab_bar2/my_tab_bar.wxss";
 page{
   height: 100%;
   background: #f1f1f1;
@@ -64,15 +64,18 @@ page{
   margin: 0 4px 4px 0;
 }
 
-.reward{
-  height: 45px;
-  line-height: 45px;
-  background: #fff;
+.base_info{
   margin: 10px 0 0 0;
   font-size: 32rpx;
+  padding: 5px 0;
+  background: #fff;
+}
+.base_info .item{
+  height: 26px;
+  line-height: 26px;
   padding: 0 10px;
 }
-.reward .tip{
+.base_info .tip{
   color:#777; 
 }
 .education{
@@ -98,26 +101,23 @@ page{
 .self_intro{
   color: #FF4D61;
 }
+.self_info{
+  height: 26px;
+  line-height: 26px;
+}
 .certificate{
   background: #fff;
   margin: 10px 0 0 0;
   padding: 10px;
+
 }
 .certificate_img{
-  width: 135px;
+  width: 160px;
   height: 100px;
-  margin: 0 0 0 10px;
 }
 .footer{
   font-size: 32rpx;
   text-align: center;
   color:#FF4D61;
   margin: 10px 0 70px 0;
-}
-.course_item_tip{
-   float: left;
-}
-.course_item{
-  float: left;
-  margin-right: 10px; 
 }

@@ -79,6 +79,15 @@ body{overflow: auto;height: 100%;}
   text-align: center;
   position: relative;
 }
+.search_nav .search_type_station{
+  width: 30%
+}
+.search_nav .search_type_course{
+  width: 33%
+}
+.search_nav .search_type_school{
+  width: 36%;
+}
 .search_icon{
   width: 28rpx;
   height: 16rpx;
@@ -150,7 +159,7 @@ body{overflow: auto;height: 100%;}
   border-left:1px solid #fff;
   border-bottom:1px solid #fff;
   transform:rotate(-45deg);
-  left: 200rpx;
+  right: 12px;
   top: 42rpx;
 }
 

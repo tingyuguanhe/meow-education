@@ -4,10 +4,10 @@
   <view class="section">
     <view class="title">*请选择投诉原因</view>
     <view class="complain_reasons clearfix">
-      <checkbox-group bindchange="checkboxChange">
+      <checkbox-group bindchange="checkboxChange" name="reasons">
         <label wx:for="{{complainReasons}}" wx:for-item="reason" wx:key="index" class='checkbox'>
-          <checkbox value="{{reason.id}}" checked='{{reason.checked}}'  hidden='true'/>    
-          <view class="{{reason.checked ? 'reason checkbox_active' : ' reason'}}">{{reason.name}}</view>
+          <checkbox value="{{reason.id}}" checked='{{reason.checked}}' hidden='true'/>    
+          <view class="{{reason.checked ? 'reason checkbox_active' : 'reason'}}">{{reason.name}}</view>
         </label>
       </checkbox-group>
     </view>
@@ -15,14 +15,13 @@
   <!--具体描述  -->
   <view class="section">
     <view class="title">*具体说明</view>
-      <textarea class style="height: 100px;" name="textarea" placeholder="请详细描述您对此教师的不满之处"/>  
+      <textarea style="height: 100px;" name="detailed" placeholder="请详细描述您的不满之处"/>  
   </view>
   <!--上传图片  -->
   <view class="section clearfix">
     <view class="title">*相关截图：（若无，则不可上传）</view>
     <view class="imgs_show_box clearfix">
      <block wx:for="{{filePaths}}" wx:for-item="file" wx:key="index">
-     
       <view class="show_imgs">
         <image class="add_imgs" catchtap="chooseImageTap" src="{{file.img}}" mode="aspecFill"></image>  
         <view class="delete_img_icon" bindtap="deleteImg" data-imgid="{{file.id}}">
@@ -32,7 +31,7 @@
       </block>
     </view> 
     <view class="choose_img">
-      <image class="add_icon" src="../../images/add.png" bindtap="chooseImage"></image>
+      <image class="add_icon" src="../../images/add.png" bindtap="getImage"></image>
      
     </view>
   </view>

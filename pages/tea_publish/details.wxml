@@ -1,8 +1,7 @@
-<import src="../../../components/tab_bar/my_tab_bar.wxml" />
+<import src="../../components/tab_bar2/my_tab_bar.wxml" />
 <view class="teacher_detail">
 <!--基本信息  -->
 <view class='teacher_base_intro '>
-
   <view class="base_info clearfix">
     <image class="teacher_img" src='{{infos.head_image}}'></image>
     <view class="intro">
@@ -14,12 +13,7 @@
         </block>
       </view>
     </view>
-    <navigator url="../../complain/complain?type=1">
-      <view class="complain">
-        <image class="complain_icon" src='/images/complain.png'></image>
-        <view class="complain_text">投诉</view>
-      </view>
-    </navigator>
+  
   </view>
   <view class="base_info_summarize clearfix">
     <view class="date">
@@ -57,7 +51,7 @@
       <text>{{infos.high_score}}</text>
     </view>
     <view class="education_item">
-      <text class="tip">学历：</text><text>{{ infos.school.level}}</text>
+      <text class="tip">学历：</text><text>{{ educational_background}}</text>
     </view>
     <view class="education_item">
       <text class="tip">专业：</text><text>{{infos.profession}}</text>
@@ -70,14 +64,10 @@
   </view>
   <!--证明  -->
   <view class="certificate">
-    <block wx:for="{{infos.confirms}}" wx:key="index">
+   <block wx:for="{{infos.confirms}}" wx:key="index">
       <image class="certificate_img" src="{{item}}"></image>
     </block>
   </view>  
-    <!--footer  -->
-    <view class="footer">
-    已经到底啦！快给王老师发送申请吧
-    </view>
 </view>
 
-<template is="mytabbar" data="{{...customerIsFollower}}"/>
+<template is="mytabbar"/>

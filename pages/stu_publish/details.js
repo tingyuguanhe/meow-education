@@ -1,33 +1,28 @@
 // pages/teachers/details.js
-import { getTeacherDetail, followerTeacher } from '../../../api/api.js'
+import { myPublish, deleteStudent } from '../../api/api.js'
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    teacher_id:'',
-    like: 8,
+    id:'',
     applys: 10,
     reward: 200,
     school: '北京大学',
     score: 588,
     educational_background: '博士',
     profession: '数学',
-    infos:'',
-    customerIsFollower:{
-      customer_is_follower: false
-    }
+    infos:''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      teacher_id: options.id
-    })
-
-    this.getStuDetail(this.data.teacher_id);
+   
+    this.getStuDetail();
 
   },
 
@@ -42,7 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**
@@ -81,19 +76,12 @@ Page({
       title: '教师信息', 
       desc: '喵喵教育--教师信息', 
       imageUrl: '../../images/wxapp.png',
-      path: '/pages/teachers/details/index?id=' + this.data.teacher_id,
+      path: '/pages/teachers/details/index?id=' + this.data.stu_id,
       data: this.data
     }
   },
   sendSys: function(){
     this.onShareAppMessage
-  },
-  getQueryString: function (id) {  
-    var r = window.location;
-    console.log(r);
-    // this.setData({
-    //   teacher_id: id
-    // })
   },
   sendApply: function(){
     wx.showModal({
@@ -113,41 +101,51 @@ Page({
   },
   applyComplain(){
     wx.navigateTo({
-      url: '../../complain/complain?type='//实际路径要写全
+      url: '../../complain/complain'//实际路径要写全
     })
   },
-  getStuDetail: function (id) {
-    var reqData = {
-      id: id
-    }
-    getTeacherDetail(reqData).then((res) => {
-      console.log('教师详情', res);
+  getStuDetail: function(){
+    myPublish().then((res) => {
+      console.log(res);
       this.setData({
         infos: res,
-        customerIsFollower: {
-          customer_is_follower: res.customer_is_follower
-        }
+        id: res.id
       })
     })
   },
-  //收藏
-  followerUser: function () {
+  delPublic: function () {
+    var _this = this;
+    wx.showModal({
+      title: '确认删除？',
+      content: '删除后将不能寻找教师',
+      confirmText: '确定',
+      confirmColor: '#FF4D61',
+      success: function (r) {
+        if (r.confirm) {
+          _this.del();
+
+        }
+      }
+    })
+  },
+  del: function () {
     var reqData = {
-      teacher: this.data.teacher_id
+      id: this.data.id
     }
-    followerTeacher(reqData).then((res) => {
-      if (res.status == 0 || res.status == 1) {
-        this.setData({
-          customerIsFollower: true
-        })
+
+    deleteStudent(reqData).then((res) => {
+      if (res.status == 1) {
         wx.showToast({
-          title: res.msg,
+          title: '删除成功',
           icon: 'none'
         })
+        setTimeout(function(){
+          wx.switchTab({
+            url: '../user/index'//实际路径要写全
+          })
+        },2000)
       }
-      
     })
-
   }
 
   

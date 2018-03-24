@@ -1,13 +1,15 @@
 <view class="help_cells">
   <view class="cell" wx:for="{{helps}}" wx:key="index">
     <view class="weui_cell_hd" bindtap="showAnswer" data-index="{{index}}">
-      <view class="qa_title">{{item.title}}</view>
+      <view class="qa_title">{{item.question}}</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
     <view class="weui-cell__bd"></view> 
     <view class="{{show_index == index ? 'show cell_bd' : 'cell_bd hide'}}">
-      <view>先注册，先注册，然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦先注册，然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦先注册，然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦先注册，然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦先注册，然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦先注册，然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦然后登录成功后，选择学生，寻找适合的学生，并向他发送申请夏天的冲锋衣控股 v 和理解哦可怕了非常具有广阔 vu 和理解哦剋喜欢听持家有方苦瓜以灵活；就非常具有干枯和 i 了解哦剋吃</view>
+    <view>{{item.text}}</view>
     </view>
   </view>
-  <view class="problem_feedback" bindtap="problemFeedback">问题反馈</view>
+  <navigator url="../complain/complain?type=0">
+  <view class="problem_feedback">问题反馈</view>
+  </navigator>
 </view>

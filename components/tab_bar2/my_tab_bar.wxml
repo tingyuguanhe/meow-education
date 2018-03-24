@@ -1,0 +1,13 @@
+<template name="mytabbar">
+  <view class="my_tab_bar clearfix">
+   
+    <view class="send_apply" bindtap="updatePublic">
+    <image src="../../../images/tabbar/star_gray.png"></image>
+      <text>修改</text>
+    </view>
+    <view class="send_apply" bindtap="delPublic">
+    <image src="../../../images/tabbar/star_gray.png"></image>
+      <text>删除</text>
+    </view>
+  </view>
+</template>

@@ -44,18 +44,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showModal({
-      title: '您的电话不会公开显示',
-      content: '为保护您的隐私，仅当您主动向家长发送申请时，对方才可看到您的电话',
-      confirmText: '我知道了',
-      confirmColor:'#FF4D61',
-      showCancel: false,
-      success: function(){
-
-      }
-    
-    })
-   
     this.getSchoolsList();   //学校
    
     this.getEduBackgroundList();  //学历
@@ -156,12 +144,7 @@ Page({
   onShareAppMessage: function () {
   
   },
-  radioChange: function (e) {
-    wx.navigateTo({
-      url: '../parents_register/parents_register'//实际路径要写全
-    })
-  },
- 
+  
   formSubmit: function (e) {
     //console.log('form发生了submit事件，携带数据为：', e.detail.value);
     

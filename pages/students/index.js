@@ -1,4 +1,4 @@
-import { getStudentList, getCity, getCourses, getSchools } from '../../api/api.js'
+import { getStudentList, getCity, getAllCourses, getAllSchools } from '../../api/api.js'
 var app = getApp();
 Page({
   /**
@@ -6,64 +6,29 @@ Page({
    */
   data: {
     isHideLoadMore: true,
+    city:'',
     page: 1,
     hasNext: false,
-    page_size:20,
+    pageSize:20,
     stuList: [],
     showModal: false,
-    coursesTypes: [
-      {
-        name: '全部课程',
-        id: "total"
-      },
-      {
-        name: '数学',
-        id: "math"
-      },
-      {
-        name: '英语',
-        id: "english"
-      },
-      {
-        name: '物理',
-        id: "wuli"
-      },
-      {
-        name: '化学',
-        id: "huaxue"
-      },
-      {
-        name: '韩语',
-        id: "hanyu"
-      }
-    ],
-    searchByType: "全部课程",
+    coursesTypes: [],
+    courseId:0,
+    courseName: "",
     showSchoolModal: false,
-    schoolsTypes: [
-      {
-        name: '北京大学',
-        id: "beida"
-      },
-      {
-        name: '清华大学',
-        id: "qinghua"
-      },
-      {
-        name: '华科大',
-        id: "huakeda"
-      },
-      {
-        name: '武汉大学',
-        id: "wuda"
-      }
-    ],
-    searchBySchool: "北京大学",
+    schoolsTypes: [],
+    schoolName: "",
+    schoolId:0
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getSchoolsList();  //获取学校
+    this.getCoursesList();  //获取课程
+    this.getCityList();   //城市
 
   },
 
@@ -78,6 +43,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
+   
     wx.pageScrollTo({
       scrollTop: 0,
     })
@@ -85,8 +51,9 @@ Page({
       page: this.data.page,
       page_size: this.data.pageSize
     }
+   
 
-    this.getList(reqData);   //学生列表
+    this.getStudentListData(reqData);   //学生列表
   },
 
   /**
@@ -100,7 +67,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log('onUnload');
   },
 
   /**
@@ -124,7 +91,7 @@ Page({
     this.setData({
       isHideLoadMore: false
     });
-    this.getCourse();
+    
   },
 
   /**
@@ -133,20 +100,80 @@ Page({
   onShareAppMessage: function () {
 
   },
+  
   // 选择课程
-  selectCourse: function () {
+  showCoursesModal: function () {
     this.setData({
       showModal: !this.data.showModal,
       showSchoolModal: false
     })
 
   },
-
-  selectSchool: function () {
+  showSchooslModal: function () {
     this.setData({
       showModal: false,
       showSchoolModal: !this.data.showSchoolModal
     })
+  },
+  //获取城市
+  getCityList: function () {
+    getCity()
+      .then((res) => {
+        // console.log('城市', res);
+        this.setData({
+          city: res.results[0].name
+        })
+
+      });
+  },
+  //获取学校
+  getSchoolsList: function () {
+    getAllSchools().then(
+      (res) => {
+        this.setData({
+          schoolsTypes: res
+        })
+        if (this.data.schoolsTypes.length > 0) {
+          this.setData({
+            schoolName: this.data.schoolsTypes[0].name,
+            schoolId: this.data.schoolsTypes[0].id
+          })
+        }
+
+      }
+    );
+  },
+  getCoursesList: function () {
+   
+    getAllCourses().then((res) => {
+      console.log('课程', res);
+      this.setData({
+        coursesTypes: res
+      })
+      if (this.data.coursesTypes.length > 0) {
+        this.setData({
+          courseName: this.data.coursesTypes[0].name,
+          courseId: this.data.coursesTypes[0].id
+        })
+      }
+    })
+
+  },
+  selectSchool: function (event) {
+    var school = "";
+    var arr = this.data.schoolsTypes;
+    for (var i = 0; i < arr.length; i++) {
+      if (event.currentTarget.id == arr[i].id) {
+        school = arr[i].name;
+      }
+    }
+    this.setData({
+      schoolName: school,
+      schoolId: event.currentTarget.id,
+      showSchoolModal: false
+    })
+
+    this.getStudentListData();   //学生列表 
   },
   closeModal: function () {
     this.setData({
@@ -159,7 +186,7 @@ Page({
     // app.request
     getStudentList(reqData)
       .then((res) => {
-        console.log('学生信息', res);
+      
         this.setData({
           stuList: res.results,
           hasNext: res.has_next,
@@ -167,75 +194,32 @@ Page({
         })
       })
   },
-  getCourse: function () {
+  getStudentListData: function () {
+    //console.log('获取学生列表');
     var req_data = {
-      param: {
-        page: this.data.page + 1,
-        page_size: this.data.pageSize
-      }
+      page: this.data.page,
+      page_size: this.data.pageSize,
+      school: this.data.schoolId,
+      subject: this.data.courseId
     }
     this.getList(req_data);
-
-    this.setData({
-      isHideLoadMore: true
-    });
   },
-  searchByCourse: function (event) {
+  selectCourse: function (event) {
     var course = "";
-    switch (event.currentTarget.id) {
-      case "total":
-        course = "全部课程";
-        break;
-      case "math":
-        course = "数学";
-        break;
-      case "english":
-        course = "英语";
-        break;
-      case "wuli":
-        course = "物理";
-        break;
-      case "huaxue":
-        course = "化学";
-        break;
-      case "hanyu":
-        course = "韩语";
-        break;
+    var arr = this.data.coursesTypes;
+    for (var i = 0; i < arr.length; i++) {
+      if (event.currentTarget.id == arr[i].id) {
+        course = arr[i].name;
+      }
     }
-
     this.setData({
-      searchByType: course,
+      courseName: course,
+      courseId: event.currentTarget.id,
       showModal: false
     })
 
-    //this.getCourse();
-
-
-
+    this.getStudentListData();   //学生列表 
   },
+  
 
-  searchBySchool: function (event) {
-    var school = "";
-    switch (event.currentTarget.id) {
-      case "beida":
-        school = "北京大学";
-        break;
-      case "qinghua":
-        school = "清华大学";
-        break;
-      case "huakeda":
-        school = "华科大";
-        break;
-      case "wuda":
-        school = "武汉大学";
-        break;
-    }
-
-    this.setData({
-      searchBySchool: school,
-      showSchoolModal: false
-    })
-
-    //this.getCourse();
-  }
 })

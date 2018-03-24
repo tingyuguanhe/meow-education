@@ -1,17 +1,9 @@
 <view class="login">
 
 <form name="form" bindsubmit="formSubmit" bindreset="formReset">
-  <view class="section section_gap role_box clearfix">
-    <view class="role active">
-      <text>我是老师</text>
-    </view>
-    <view class="role" bindtap="radioChange">
-      <text>我是家长</text>
-    </view>
-  </view>
+ 
   <!--基本信息  -->
   <view>
-
   <view class="section">
     <view class="section__title bg">
     您的头像</view>

@@ -1,4 +1,4 @@
-<import src="../../../components/tab_bar/my_tab_bar.wxml" />
+<import src="../../components/tab_bar2/my_tab_bar.wxml" />
 <view class="teacher_detail">
 <!--基本信息  -->
   <view class='teacher_base_intro '>
@@ -8,12 +8,10 @@
         <view class="name">{{infos.name}}</view>
         <view class="courses">{{infos.money}}/小时</view>
       </view>
-      <navigator url="../../complain/complain?type=2">
-        <view class="complain">
-          <image class="complain_icon" src='/images/complain.png'></image>
-          <view class="complain_text">投诉</view>
-        </view>
-      </navigator>
+      <view class="complain" bindtap="applyComplain">
+        <image class="complain_icon" src='/images/complain.png'></image>
+        <view class="complain_text">投诉</view>
+      </view>
     </view>
     <view class="base_info_summarize clearfix">
       <view class="date">
@@ -75,4 +73,4 @@
   </view>
 </view>
 
-<template is="mytabbar" data="{{...infos}}"/>
+<template is="mytabbar"/>

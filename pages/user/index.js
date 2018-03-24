@@ -1,3 +1,4 @@
+import { userIsRegister } from '../../api/api.js'
 const App = getApp()
 
 Page({
@@ -7,17 +8,20 @@ Page({
 			{
         icon: '../../images/apply.png',
 				text: '我的收藏',
-				path: '/pages/order/list/index'
+				path: '/pages/collect/index',
+        name:'collect'
 			}, 
 			{
         icon: '../../images/apply.png',
 				text: '我的发布',
-				path: '/pages/address/list/index'
+        path: '/pages/tea_publish/details',
+        name: 'publish'
 			}, 
 			{
         icon: '../../images/apply.png',
 				text: '我的申请',
-				path: '',
+        path: '/pages/apply/index',
+        name: 'apply'
 			}
 		
 		],
@@ -87,7 +91,7 @@ Page({
         url: path,
       })
     },
-   
+
     signOut() {
     	App.HttpService.signOut()
     	.then(res => {
@@ -99,24 +103,49 @@ Page({
     		}
     	})
     },
-    isRegister: function(){
-      wx.showModal({
-        title: '尚未注册',
-        content: '注册后可更快找到合适的家教',
-        confirmText: '立即注册',
-        confirmColor: '#FF4D61',
-        success: function (res) {
-          if (res.confirm) {
+    isRegister: function(e){
+      userIsRegister().then((res)=>{
+        console.log(res);
+        if (res.user_type == '未注册'){
+          wx.showModal({
+            title: '尚未注册',
+            content: '注册后可更快找到合适的家教',
+            confirmText: '立即注册',
+            confirmColor: '#FF4D61',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../register/register'//实际路径要写全
+                })
+              } 
+            }
+
+          })
+        }else{
+          //console.log('类型', e.currentTarget.dataset.name);
+          var url = "";
+          var op_type = e.currentTarget.dataset.name;
+          //我的发布
+          if (op_type == 'publish'){
+            if (res.user_type == '教师') {
+              url = "/pages/tea_publish/details";
+            } else if (res.user_type == '学生') {
+              url = "/pages/stu_publish/details";
+            }
             wx.navigateTo({
-              url: '../register/register'//实际路径要写全
+              url: url
             })
-          } else if (res.cancel) {
-            
+          }else{
+            wx.navigateTo({
+              url: e.currentTarget.dataset.path
+            })
           }
+          
+         
+          
         }
-
-
-
       })
+
+      
     }
 })

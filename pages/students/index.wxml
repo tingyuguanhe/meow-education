@@ -5,13 +5,13 @@
   </view>
   <!--筛选条件  -->
   <view class="search_nav clearfix">
-    <view class="search_type">北京站</view> 
-    <view class="search_type" bindtap="selectCourse">
-      <text>{{searchByType}}</text>
+    <view class="search_type search_type_station">{{city}}站</view> 
+    <view class="search_type search_type_course" bindtap="showCoursesModal">
+      <text>{{courseName}}</text>
       <view class="arrow"></view>
     </view>
-    <view class="search_type" bindtap="selectSchool">
-      <text>{{searchBySchool}}</text>
+    <view class="search_type search_type_school" bindtap="showSchooslModal">
+      <text>{{schoolName}}</text>
       <view class="arrow"></view>
     </view>
   </view>
@@ -46,7 +46,7 @@
 <!--课程筛选--弹出框  -->
 <view wx:if="{{showModal}}"  class="modal_dialog">
   <block wx:for="{{coursesTypes}}" wx:for-index="courseIndex" wx:for-item="course_type" wx:key="index">
-    <view class="course_option" id="{{course_type.id}}" bindtap="searchByCourse" data-me="name">
+    <view class="course_option" id="{{course_type.id}}" bindtap="selectCourse" data-me="name" data-id="id">
       <text>{{course_type.name}}</text>
     </view>
   </block>
@@ -58,7 +58,7 @@
 <!--学校筛选--弹出框  -->
 <view wx:if="{{showSchoolModal}}" class="modal_dialog">
   <block wx:for="{{schoolsTypes}}" wx:for-index="schoolIndex" wx:for-item="school_type" wx:key="index">
-    <view class="course_option" id="{{school_type.id}}" bindtap="searchBySchool" data-me="name">
+    <view class="course_option" id="{{school_type.id}}" bindtap="selectSchool" data-me="name">
       <text>{{school_type.name}}</text>
     </view>
   </block>

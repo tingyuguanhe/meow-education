@@ -1,8 +1,7 @@
 // pages/teachers/index.js
-import { getTeacherList, getCity, getCourses, getSchools } from '../../api/api.js'
+import { getTeacherList, getCity, getAllCourses, getAllSchools } from '../../api/api.js'
 var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -15,22 +14,21 @@ Page({
     teacherList:[],
     showModal: false,
     coursesTypes:[],
-    searchByType: "",
+    courseName: "",
+    courseId:0,
     showSchoolModal: false,
     schoolsTypes: [],
     schoolName: "",
+    schoolId:0
   },
  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCityList();   //城市
-    this.getSchoolsList();  //学校
-    this.getCoursesList();   //科目
+    
   },
   getList: function (reqData){
-    // app.request
     getTeacherList(reqData)
       .then((res) => {
         //console.log('教师信息',res);
@@ -40,19 +38,17 @@ Page({
           page: res.page,
           isHideLoadMore: true
         })
-
       })
   },
   getCoursesList: function () {
-    getCourses().then((res) => {
-      console.log('科目', res.results);
+    getAllCourses().then((res) => {
       this.setData({
-        coursesTypes: res.results
+        coursesTypes: res
       })
-
       if (this.data.coursesTypes.length > 0){
         this.setData({
-          searchByType: this.data.coursesTypes[0].name
+          courseName: this.data.coursesTypes[0].name,
+          courseId: this.data.coursesTypes[0].id
         })
       }
     })
@@ -71,20 +67,18 @@ Page({
   },
   //获取学校
   getSchoolsList: function(){
-    getSchools().then(
+    getAllSchools().then(
       (res) =>{
-        // console.log('学校',res)
         this.setData({
-          schoolsTypes: res.results
+          schoolsTypes: res
         })
-
         if (this.data.schoolsTypes.length > 0){
           this.setData({
-            schoolName: this.data.schoolsTypes[0].name
+            schoolName: this.data.schoolsTypes[0].name,
+            schoolId: this.data.schoolsTypes[0].id
           })
-          
         }
-        
+       
       }
     );
   },
@@ -103,19 +97,22 @@ Page({
     wx.pageScrollTo({
       scrollTop: 0,
     })
-    var reqData = {
-      page: this.data.page,
-      page_size: this.data.pageSize
+    this.getCityList();   //城市
+    this.getSchoolsList();  //学校
+    this.getCoursesList();   //科目
+    this.getTeacherListData();   //教师列表 
+   
+    app.userInfoReadyCallback = res => {
+      
     }
     
-    this.getList(reqData);   //教师列表
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
@@ -147,7 +144,7 @@ Page({
       this.setData({
         isHideLoadMore: false
       });
-      this.getCourse();
+      this.getTeacherListData();
     }
 
   },
@@ -158,26 +155,25 @@ Page({
   onShareAppMessage: function () {
   
   },
-  getCourse: function(){
+  getTeacherListData: function(){
+    //console.log('获取教师接口');
     var req_data = {
-      param: {
-        page: this.data.page + 1,
-        page_size: this.data.pageSize
-      }
+      page: this.data.page,
+      page_size: this.data.pageSize,
+      school: this.data.schoolId,
+      subject: this.data.courseId
     }
-    this.getList(req_data);
-
-    
+    this.getList(req_data); 
   },
   // 选择课程
-  selectCourse: function(){
+  showCoursesModal: function(){
     this.setData({ 
       showModal: !this.data.showModal,
       showSchoolModal: false
     })
    
   },
-  selectSchool: function(){
+  showSchoolsModal: function(){
     this.setData({
       showModal: false,
       showSchoolModal: !this.data.showSchoolModal
@@ -189,7 +185,7 @@ Page({
       showSchoolModal: false
     })
   },
-  searchByCourse: function (event){
+  selectCourse: function (event){
     var course = "";
     var arr = this.data.coursesTypes;
     for (var i = 0; i < arr.length; i++){
@@ -197,45 +193,30 @@ Page({
         course = arr[i].name;
       }
     }
-
     this.setData({
-      searchByType: course,
+      courseName: course,
+      courseId: event.currentTarget.id,
       showModal: false
     })
-
-    var reqData = {
-      page: this.data.page,
-      page_size: this.data.pageSize
-    }
-
-    this.getList(reqData);   //教师列表
-
-
-    
+   
+    this.getTeacherListData();   //教师列表 
   },
   
-  searchBySchool: function (event){
+  selectSchool: function (event){
     var school = "";
-    switch (event.currentTarget.id) {
-      case "beida":
-        school = "北京大学";
-        break;
-      case "qinghua":
-        school = "清华大学";
-        break;
-      case "huakeda":
-        school = "华科大";
-        break;
-      case "wuda":
-        school = "武汉大学";
-        break;
+    var arr = this.data.schoolsTypes;
+    for (var i = 0; i < arr.length; i++) {
+      if (event.currentTarget.id == arr[i].id) {
+        school = arr[i].name;
+      }
     }
-
     this.setData({
-      searchBySchool: school,
+      schoolName: school,
+      schoolId: event.currentTarget.id,
       showSchoolModal: false
     })
 
-    this.getCourse();
-  }
+    this.getTeacherListData();   //教师列表 
+  },
+  
 })

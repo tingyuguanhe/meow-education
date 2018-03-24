@@ -1,0 +1,233 @@
+/* pages/login/login.wxss */
+@import "../../my_style/common.wxss";
+.role_box{
+  width:76%;
+}
+.role{
+  float: left;
+  background: #ddd;
+  width: 260rpx;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.role.active{
+  background: #FF4D61;
+  color:#fff;
+}
+.role:last-child{
+  float: right;
+}
+.section{
+  margin: 20px auto 0 auto;
+}
+.section .section__title{
+  width:220rpx;
+  height:76rpx;
+  line-height: 75rpx;
+  border-radius:0 110px 110px 0;
+  color:#fff;
+  font-size:34rpx;
+  text-align: center;
+}
+.section_item{
+  padding:0 10px;
+  margin:10px 0 0 0;
+  border:1px solid #FF4D61;
+  height:34px;
+  font-size:32rpx;
+  line-height:34px;
+  
+  border-radius:30px;
+  position: relative;
+}
+.section_item input{
+  height: 34px;
+  line-height: 34px;
+  color:#333;
+}
+.section_item .section_label{
+  margin: 0 0 0 20rpx;
+  float: left;
+  color:#FF4D61;
+}
+.level_select{
+  float: left;
+  width: 73%;
+  height:34px;
+}
+.arrow_right{
+  position: absolute;
+  right: 10px;
+  top:8px;
+  width:8px;
+  height:14px;
+}
+
+.checkbox_item{
+  float:left;
+  padding:5px 12px;
+  border:1px solid #e1e1e1;
+  border-radius:50px;
+  margin:0 6px 6px 0;
+  color:#777;
+  font-size:32rpx;
+}
+.content{
+  padding: 0 10px;
+}
+.section .checkbox_active{
+  background: #FF4D61;
+  border-color:#FF4D61;
+  color:#fff;
+}
+textarea{
+  width: 100%;
+  border:1px dashed #FF4D61;
+  margin: 20px 0 0 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.choose_img{
+  width: 60px;
+  height: 60px;
+  border: 2px dashed #ccc;
+  position: relative;
+  float: left;
+  margin: 20px 0 0 0;
+}
+.add_icon{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top:50%;
+  margin: -20px 0 0 -20px;
+}
+.show_imgs{
+  position: relative;
+  float: left;
+  margin: 0 12px 0 0;
+}
+.delete_img_icon{
+  position:absolute;
+  width:22px;
+  height:22px;
+  right:-8px;
+  top:-6px;
+}
+.imgs_show_box{
+  float: left;
+  margin: 20px 0 0 0;
+}
+.add_imgs{
+  width: 62px;
+  height: 62px;
+}
+.tip{
+  color:#FF4D61;
+  font-size: 32rpx;
+  margin: 10px 0 0 0;
+  padding: 0 10px;
+}
+.ditu_img{
+  width: 22px;
+  height: 20px;
+  vertical-align:top;
+  margin: 2px 0 0 4px;
+}
+.get_location{
+  font-size: 32rpx;
+}
+
+.map_container{ 
+  height: 300px; 
+  width: 100%; 
+  margin: 10px 0;
+} 
+.map { 
+  height: 100%; 
+  width: 100%;
+}
+.rgc_info{
+  padding: 0 10px;
+}
+
+/* ***************年级选择器样式***************/
+/* 遮罩层 */
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.area-picker-common{
+  background-color: #fff;
+  padding: 0;
+  width: 100%; 
+  height: 500rpx;
+  bottom: 0;
+  position: fixed;
+}
+
+.area-picker-common picker-view-column view{
+	width:100%;
+  vertical-align:middle; 
+  font-size: 32rpx;
+  line-height: 32rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation-element-wrapper {
+  display: flex;  
+  position: fixed;
+  left: 0;
+  top:0;
+  height: auto;
+  width: 100%;
+  z-index: 99;
+  transform: translateY(100vh);
+}
+
+.animation-element {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 600rpx;
+  bottom: 0;
+  background-color: #fff;
+}
+.left-bt,.right-bt{
+  display: inline-flex;  
+  position: fixed;
+  margin-top: 20rpx;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 38rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.left-bt{
+  left: 30rpx;
+  color: #898989;
+}
+.right-bt {
+  right: 30rpx;
+  color:#20af1f;
+}
+.line{
+  display: block;
+  position: fixed;
+  height: 1rpx;
+  width: 100%;
+  margin-top: 94rpx; 
+  background-color: #eeeeee;
+}

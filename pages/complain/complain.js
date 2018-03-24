@@ -1,58 +1,28 @@
 // pages/complain.js
+import { getReason, submitSuggestion } from '../../api/api.js'
 var app = getApp();
-
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     filePaths:[],
-    complainReasons:[
-      {
-        name:'信息虚假（如学历、专业等）',
-        id:'xujiaxinxi',
-        checked: false
-      },
-      {
-        name: '教学能力低',
-        id: 'nenglidi',
-        checked: false
-      },
-      {
-        name: '中介冒充个人',
-        id: 'zhongjie',
-        checked: false
-      },
-      {
-        name: '无故旷课、迟到',
-        id: 'kuangke',
-        checked: false
-      },
-      {
-        name: '品信问题',
-        id: 'pinxinwenti',
-        checked: false
-      },
-      {
-        name: '课时费问题',
-        id: 'keshifei',
-        checked: false
-      }, 
-      {
-        name: '其它问题',
-        id: 'others',
-        checked: false
-      }
-    ],
-    selectReason:[]
+    userType:0,
+    complainReasons:[],
+    selectReason:[],
+    uploadUrl: 'http://114.112.75.135:7000/api/upload/',
+    fileImgs: [],
+    temImgUrl:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      userType: options.type
+    })
+    this.getReasonList();
   },
 
   /**
@@ -66,7 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -105,6 +75,9 @@ Page({
   },
   
   formSubmit: function (e) {
+    var val = e.detail.value;
+    val.images = this.data.fileImgs;
+    val.suggestion_obj = this.data.userType;
     if (this.data.selectReason.length == 0){
       wx.showToast({
         title: '请选择投诉原因',
@@ -113,7 +86,7 @@ Page({
       return;
     }
 
-    if (!e.detail.value.textarea){
+    if (!e.detail.value.detailed){
       wx.showToast({
         title: '请填写投诉详情',
         icon: 'none'
@@ -129,8 +102,29 @@ Page({
       return;
     } 
 
-    // console.log(this.data.filePaths);
-    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    submitSuggestion(val).then((res)=>{
+      if(res.status == 1){
+        wx.showToast({
+          title: '投诉成功',
+          icon: 'none'
+        })
+
+        setTimeout(function () {
+          wx.switchTab({
+            url: '../user/index',
+          })
+        }, 2000)
+        
+      }else{
+        wx.showToast({
+          title: '投诉失败',
+          icon: 'none'
+        })
+      }
+
+      
+      
+    })
   },
   formReset: function () {
     console.log('form发生了reset事件')
@@ -148,7 +142,7 @@ Page({
     var uuid = s.join("");
     return uuid;
   },
-  chooseImage: function () {
+  getImage: function () {
     var _this = this;
     wx.chooseImage({
       count: 9, // 默认9  
@@ -156,45 +150,75 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
-        var imgs = [];
+        console.log('图片s:',res.tempFilePaths);
         for (var i = 0; i < res.tempFilePaths.length; i++) {
-           imgs.push({
-             id: _this.uuid(),
-             img: res.tempFilePaths[i]
-           })
+          //上传到服务器
+          _this.uploadimg(res.tempFilePaths[i]);
         }
-
-        _this.setData({
-          filePaths: imgs
-        })
-        console.log(_this.data.filePaths);
+        
       }
     })
   },
-  uploadimg: function () {//这里触发图片上传的方法
-    var pics = this.data.pics;
-    app.uploadimg({
-      url: 'https://........',//这里是你图片上传的接口
-      path: pics//这里是选取的图片的地址数组
+  uploadimg: function (data) {
+    var _this = this;
+    wx.uploadFile({
+      url: _this.data.uploadUrl,
+      filePath: data,
+      name: 'file',//这里根据自己的实际情况改
+      // formData: null,
+      success: function (res) {
+        if (res.statusCode == 200) {
+          var Data = JSON.parse(res.data);
+          _this.data.temImgUrl.push({
+            id: _this.uuid(),
+            img: Data.url
+          });
+          _this.setData({
+            filePaths: _this.data.temImgUrl
+          })
+          console.log('上传的图片',_this.data.filePaths);
+          _this.getImgs(_this.data.filePaths);
+          
+        }
+      },
+
+      fail: function (err) {
+        console.log(err);
+      }
+
     });
   },
+  getImgs: function (data) {
+    var imgs = [];
+    for (var i = 0; i < data.length; i++) {
+      imgs.push(data[i].img);
+    }
+    this.setData({
+      fileImgs: imgs
+    })
+    console.log('相关证书', this.data.fileImgs);
+  },
+
   deleteImg: function(event){
     var _this = this;
     var id = event.currentTarget.dataset.imgid;
-    for (var i = 0; i < _this.data.filePaths.length;i++){
-      if (_this.data.filePaths[i].id == id){
-        _this.data.filePaths.splice(i, 1);
+    var arr = _this.data.temImgUrl;
+   
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].id == id) {
+        arr.splice(i, 1);
       }
     }
-    this.setData({
-      filePaths: this.data.filePaths
+    _this.setData({
+      filePaths: arr
     })
+    this.getImgs(this.data.filePaths);
   },
   checkboxChange: function (e) {
     var items = this.data.complainReasons;
     var checkArr = e.detail.value;
     for (var i = 0; i < items.length; i++) {
-      if (checkArr.indexOf(items[i].id) != -1) {
+      if (checkArr.indexOf((items[i].id).toString()) != -1) {
         items[i].checked = true;
       } else {
         items[i].checked = false;
@@ -204,45 +228,20 @@ Page({
       complainReasons: items,
       selectReason: e.detail.value
     })
+
+    console.log(this.data.selectReason);
+  },
+  getReasonList: function(){
+    var reqData={
+      'type': this.data.userType
+    }
+    getReason(reqData).then((res)=>{
+      console.log('原因',res);
+      this.setData({
+        complainReasons: res
+      })
+    })
   }
   
 })
-
-//多张图片上传
-function uploadimg(data) {
-  var that = this,
-    i = data.i ? data.i : 0,
-    success = data.success ? data.success : 0,
-    fail = data.fail ? data.fail : 0;
-  wx.uploadFile({
-    url: data.url,
-    filePath: data.path[i],
-    name: 'fileData',
-    formData: null,
-    success: (resp) => {
-      success++;
-      console.log(resp)
-      console.log(i);
-      //这里可能有BUG，失败也会执行这里
-    },
-    fail: (res) => {
-      fail++;
-      console.log('fail:' + i + "fail:" + fail);
-    },
-    complete: () => {
-      console.log(i);
-      i++;
-      if (i == data.path.length) {  //当图片传完时，停止调用     
-        console.log('执行完毕');
-        console.log('成功：' + success + " 失败：" + fail);
-      } else {//若图片还没有传完，则继续调用函数
-        console.log(i);
-        data.i = i;
-        data.success = success;
-        data.fail = fail;
-        that.uploadimg(data);
-      }
-    }
-  });
-}
 
