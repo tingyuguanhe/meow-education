@@ -47,13 +47,12 @@
   height: 90px;
 }
 .section_item{
-  padding:0 10px;
+  padding:0 2px;
   margin:10px 0 0 0;
-  border:1px solid #FF4D61;
+  border-bottom:1px solid #ccc;
   height:34px;
   font-size:32rpx;
-  line-height:34px;
-  border-radius:30px;
+  line-height:32px;
   position: relative;
 }
 .section_item input{

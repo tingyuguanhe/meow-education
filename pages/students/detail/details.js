@@ -1,5 +1,5 @@
 // pages/teachers/details.js
-import { getStudentDetail, followerStudent } from '../../../api/api.js'
+import { getStudentDetail, followerUser } from '../../../api/api.js'
 Page({
 
   /**
@@ -121,9 +121,10 @@ Page({
   //收藏
   followerUser: function () {
     var reqData = {
-      student: this.data.stu_id
+      target_id: this.data.stu_id,
+      target_type: "student"
     }
-    followerStudent(reqData).then((res) => {
+    followerUser(reqData).then((res) => {
       if (res.status == 0 || res.status == 1){
         wx.showToast({
           title: res.msg,

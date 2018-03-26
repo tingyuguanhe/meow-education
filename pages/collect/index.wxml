@@ -1,3 +1,26 @@
-<view>
-  您暂时还没有收藏哦
+<view class="follower_wrap">
+  <view wx:if="{{length >0}}">
+    <block wx:for="{{followerData}}" wx:key="{{index}}">
+      <view class="follower_item clearfix">
+        <view class="left">
+          <image class="photo" src="../../images/img.jpg"></image>
+          <view>{{item.target_name}}</view>
+        </view>
+        <view class="right">
+          <text>科目：</text>
+          <block wx:for="{{item.target_subject}}" wx:for-item="course" wx:key="index">
+            <text class="course_item">{{course}}</text>
+          </block>
+          <view class="money">
+            课时费：100元／小时
+          </view>
+        </view>
+        
+      </view>
+    </block>
+    
+  </view>
+  <view wx:else class="tip">
+    您暂时还没有收藏哦
+  </view>
 </view>

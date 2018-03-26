@@ -1,5 +1,5 @@
 // pages/teachers/details.js
-import { getTeacherDetail, followerTeacher } from '../../../api/api.js'
+import { getTeacherDetail, followerUser } from '../../../api/api.js'
 Page({
   /**
    * 页面的初始数据
@@ -27,7 +27,7 @@ Page({
       teacher_id: options.id
     })
 
-    this.getStuDetail(this.data.teacher_id);
+    this.getTeaDetail(this.data.teacher_id);
 
   },
 
@@ -116,7 +116,7 @@ Page({
       url: '../../complain/complain?type='//实际路径要写全
     })
   },
-  getStuDetail: function (id) {
+  getTeaDetail: function (id) {
     var reqData = {
       id: id
     }
@@ -133,9 +133,10 @@ Page({
   //收藏
   followerUser: function () {
     var reqData = {
-      teacher: this.data.teacher_id
+      target_id: this.data.teacher_id,
+      target_type: "teacher"
     }
-    followerTeacher(reqData).then((res) => {
+    followerUser(reqData).then((res) => {
       if (res.status == 0 || res.status == 1) {
         this.setData({
           customerIsFollower: true

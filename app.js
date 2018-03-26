@@ -2,42 +2,36 @@
 //app.js做为小程序的入口，里面有个App实例，每个小程序只会有一个App实例，小程序启动以后触发onLaunch函数执行，获取用户信息
 //app.js
 App({
-
   onLaunch: function () {
     // 展示本地存储能力
+    var _this = this;
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
-
-    this.register();
-
-    // 获取用户信息
+    this.register();//到后台换取 openId, sessionKey, unionId
+    //获取用户信息
     wx.getSetting({
-      success: res => {
+      success(res) {
         if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          //已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              //console.log('用户信息',res.userInfo);
+              _this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+              if (_this.userInfoReadyCallback) {
+                _this.userInfoReadyCallback(res)
               }
+            },
+            fail: function (err) {
+              console.log('失败', err);
             }
           })
         }
       }
     })
+      
   },
   globalData: {
     userInfo: null
@@ -67,7 +61,7 @@ App({
             },
             success: function (res) {
               wx.setStorageSync('Token', res.data.token)
-
+              // console.log('Token', res.data.token);
             }
           })
         } else {

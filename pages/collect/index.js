@@ -1,18 +1,20 @@
 // pages/collect/index.js
+import { getFollowerList } from '../../api/api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    followerData: [],
+    length:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getFollowerListData();
   },
 
   /**
@@ -62,5 +64,15 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  getFollowerListData: function(){
+    getFollowerList().then((res)=>{
+      console.log(res);
+      this.setData({
+        followerData: res,
+        length: res.length
+      })
+
+    })
   }
 })

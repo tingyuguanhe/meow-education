@@ -1,1 +1,46 @@
 /* pages/collect/index.wxss */
+@import "../../my_style/common.wxss";
+.tip{
+  position: absolute;
+  top:38%;
+  left:50%;
+  margin-left: -60px; 
+  color:#777;
+  font-size: 32rpx;
+}
+.follower_wrap{
+  padding: 20px 25px;
+}
+.follower_item{
+  min-height: 100px;
+  background: #FF4D61;
+  border-radius:20px; 
+  color:#fff;
+}
+.photo{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+}
+.left{
+  float: left;
+  height: 110px;
+  width: 39%;
+  text-align: center;
+  font-size: 34rpx;
+  padding: 14px 0 0 0;
+  border-right: 2px dashed #fff;
+}
+.right{
+  float: left;
+  width: 50%;
+  font-size: 32rpx;
+  padding: 20px 0 0 16px;
+}
+.money{
+  margin: 20px 0 0 0;
+}
+.course_item{
+  margin: 0 10px 0 0;
+}

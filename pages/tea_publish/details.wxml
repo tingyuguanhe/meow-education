@@ -51,7 +51,7 @@
       <text>{{infos.high_score}}</text>
     </view>
     <view class="education_item">
-      <text class="tip">学历：</text><text>{{ educational_background}}</text>
+      <text class="tip">学历：</text><text>{{ infos.learn_name }}</text>
     </view>
     <view class="education_item">
       <text class="tip">专业：</text><text>{{infos.profession}}</text>

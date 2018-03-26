@@ -3,7 +3,7 @@ const App = getApp()
 
 Page({
 	data: {
-		userInfo: {},
+		userInfo: '',
 		items: [
 			{
         icon: '../../images/apply.png',
@@ -39,8 +39,7 @@ Page({
 		]
 	},
 	onLoad() {
-		this.getUserInfo()
-		// this.getStorageInfo()
+		this.getStorageInfo()
 	},
   // 点击跳转
 	navigateTo(e) {
@@ -57,33 +56,11 @@ Page({
 				App.WxService.navigateTo(path)
 		}
     },
-    getUserInfo() {
-    	const userInfo = App.globalData.userInfo
-
-		if (userInfo) {
-			this.setData({
-				userInfo: userInfo
-			})
-			return
-		}
-
-		App.getUserInfo()
-		.then(data => {
-            console.log(data)
-			this.setData({
-				userInfo: data
-			})
-		})
+    getStorageInfo() {
+      this.setData({
+        userInfo: App.globalData.userInfo
+      })
     },
-    // getStorageInfo() {
-    // 	App.WxService.getStorageInfo()
-    // 	.then(data => {
-    // 		console.log(data)
-    // 		this.setData({
-    // 			'settings[0].path': `${data.currentSize}KB`
-    // 		})
-    // 	})
-    // },
     bindtap(e) {
     	const index = e.currentTarget.dataset.index
 		  const path = e.currentTarget.dataset.path
@@ -105,7 +82,7 @@ Page({
     },
     isRegister: function(e){
       userIsRegister().then((res)=>{
-        console.log(res);
+        //console.log(res);
         if (res.user_type == '未注册'){
           wx.showModal({
             title: '尚未注册',
@@ -122,6 +99,7 @@ Page({
 
           })
         }else{
+         
           //console.log('类型', e.currentTarget.dataset.name);
           var url = "";
           var op_type = e.currentTarget.dataset.name;
@@ -136,13 +114,11 @@ Page({
               url: url
             })
           }else{
+            console.log(222);
             wx.navigateTo({
               url: e.currentTarget.dataset.path
             })
           }
-          
-         
-          
         }
       })
 

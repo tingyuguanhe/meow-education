@@ -7,13 +7,6 @@ Page({
    */
   data: {
     id:'',
-    like: 8,
-    applys: 10,
-    reward: 200,
-    school: '北京大学',
-    score: 588,
-    educational_background: '博士',
-    profession: '数学',
     infos:''
   },
 
@@ -75,7 +68,7 @@ Page({
       title: '教师信息', 
       desc: '喵喵教育--教师信息', 
       imageUrl: '../../images/wxapp.png',
-      path: '/pages/teachers/details/index?id=' + this.data.teacher_id,
+      path: '/pages/teachers/details/index?id=' + this.data.id,
       data: this.data
     }
   },
@@ -85,10 +78,8 @@ Page({
   getQueryString: function (id) {  
     var r = window.location;
     console.log(r);
-    // this.setData({
-    //   teacher_id: id
-    // })
   },
+  //我的发布详情
   getTeaDetail: function () {
     myPublish().then((res) => {
      
@@ -134,7 +125,7 @@ Page({
   },
   updatePublic: function(){
     wx.navigateTo({
-      url: '../update_teacher/index',
+      url: '../update_teacher/index?id=' + this.data.id,
     })
   }
 

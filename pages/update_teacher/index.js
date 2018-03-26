@@ -1,6 +1,6 @@
 
 // index.js
-import { getSchools, getEduBackground, getCourses, getTeacherType, registerTeacher } from '../../api/api.js'
+import { getTeacherDetail,getSchools, getEduBackground, getCourses, getTeacherType, registerTeacher } from '../../api/api.js'
 let app = getApp();
 Page({
 
@@ -36,14 +36,16 @@ Page({
     photoUrl:'',   //头像
     uploadUrl: 'http://114.112.75.135:7000/api/upload/',
     fileImgs:[],
-    temImgUrl:[]
-
+    temImgUrl:[],
+    infos:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
+    this.getTeaDetail(options.id);   //获取教师信息
     this.getSchoolsList();   //学校
    
     this.getEduBackgroundList();  //学历
@@ -144,9 +146,28 @@ Page({
   onShareAppMessage: function () {
   
   },
-  
+  getTeaDetail: function (id) {
+    var reqData = {
+      id: id
+    }
+    getTeacherDetail(reqData).then((res) => {
+      // console.log('教师详情', res);
+      for (var i = 0; i < res.confirms.length;i++){
+        this.resetImgs(res.confirms[i]);
+      }
+      
+      this.setData({
+        infos: res,
+        photoUrl: res.head_image,
+        selectSex: res.sex,
+        selectSchool: res.school.id - 1,
+        selecteEduBg: res.learn - 1,
+        
+      })
+    })
+  },
   formSubmit: function (e) {
-    //console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);
     
     var val = e.detail.value;
     val.confirms = this.data.fileImgs;
@@ -343,15 +364,9 @@ Page({
               photoUrl: Data.url
             })
             //console.log('头像', _this.data.photoUrl);
-          }else{
-            
-            _this.data.temImgUrl.push({
-              id: _this.uuid(),
-              img: Data.url
-            });
-            _this.setData({
-              filePaths: _this.data.temImgUrl
-            })
+          }else{ 
+            _this.resetImgs(Data.url);
+            //处理相关证书格式，方便提交给后台
             _this.getImgs(_this.data.filePaths);
             
           }
@@ -365,6 +380,18 @@ Page({
       
     });
   },
+  resetImgs: function(url){
+    this.data.temImgUrl.push({
+      id: this.uuid(),
+      img: url
+    });
+   
+    this.setData({
+      filePaths: this.data.temImgUrl
+    })
+
+  },
+  //提交前转化相关证书格式
   getImgs: function (data) {
     var imgs = [];
     for (var i = 0; i < data.length; i++) {
@@ -385,6 +412,7 @@ Page({
         arr.splice(i, 1);
       }
     }
+
     this.setData({
       filePaths: arr
     })

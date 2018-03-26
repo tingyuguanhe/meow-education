@@ -20,7 +20,7 @@
 <view class="{{showModal ? 'list noscroll' : 'list'}}">
     <block wx:for="{{teacherList}}" wx:for-index="teacherIndex" wx:for-item="teacher" wx:key="index">
         <view class='clearfix tea_item'>
-            <navigator url="detail/details?id={{teacher.id}}" class="cover flex-wrp">
+            <navigator url="./detail/details?id={{teacher.id}}" class="cover flex-wrp">
                 <image class="photo_img" src="{{teacher.head_image}}" mode="widthFix"></image>
                 <view class="tea_info">
                   <view class="name">

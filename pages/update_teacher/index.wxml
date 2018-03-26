@@ -13,17 +13,15 @@
     </view>
   </view>
   <view class="section clearfix">
-    
     <view class="content">
-    
     <view class="section_item">
       <view class="section_label">您的姓氏：</view>
-      <input name="last_name" class="tea_name" placeholder-style="color:#ccc;font-size: 30rpx;" value="{{lastName}}" bindblur="setTeaLastName" placeholder="为保护私教隐私，请输入您的姓氏即可" />
+      <input name="last_name" class="tea_name" placeholder-style="color:#ccc;font-size: 30rpx;" value="{{infos.last_name}}" placeholder="为保护私教隐私，请输入您的姓氏即可" />
      
     </view>
     <view class="section_item">
       <view class="section_label">您的电话：</view>
-      <input name="phone" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="用于教师及时和您沟通" />
+      <input name="phone" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="用于教师及时和您沟通" value="{{infos.phone}}"/>
     </view>
     <!--性别  -->
     <view class="section_item">
@@ -59,17 +57,17 @@ bindchange="bindPickerEduChange" range="{{educational_bg}}" range-key="name">
     <!--专业  -->
     <view class="section_item">
       <view class="section_label">您的专业：</view>
-      <input name="profession" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="您的专业" />
+      <input name="profession" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="您的专业" value="{{infos.profession}}"/>
     </view>
     <!--高考分数  -->
     <view class="section_item">
       <view class="section_label">高考分数：</view>
-      <input name="high_score" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="高考分数" />
+      <input name="high_score" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="高考分数" value="{{infos.high_score}}"/>
     </view>
     <!--期望薪资  -->
     <view class="section_item">
       <view class="section_label">期望薪资：</view>
-      <input name="money" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="单位：元／小时" />
+      <input name="money" placeholder-style="color:#ccc;font-size: 30rpx;" placeholder="单位：元／小时" value="{{infos.money}}"/>
     </view>
     </view>
   </view>
@@ -105,7 +103,7 @@ bindchange="bindPickerEduChange" range="{{educational_bg}}" range-key="name">
     <view class="section__title bg">
     其他备注</view>
     <view class="content textarea_box">
-      <textarea style="height: 150px;" name="self_introduction" placeholder="请填写您的上课时间或者其它详细描述"/>
+      <textarea style="height: 150px;" name="self_introduction" placeholder="请填写您的上课时间或者其它详细描述" value="{{infos.self_introduction}}"/>
     </view>
   </view>
 

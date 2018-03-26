@@ -60,11 +60,11 @@ export const deleteTeacher = (data) => p('DELETE', basePath + 'teacher/' + data.
 //删除学生
 export const deleteStudent = (data) => p('DELETE', basePath + 'students/' + data.id + '/');
 
-//收藏教师
-export const followerTeacher = (data) => p('POST', basePath + 'follower/teacher/', data);
+//收藏
+export const followerUser = (data) => p('POST', basePath + 'favorite/', data);
+//获取收藏列表
+export const getFollowerList = () => p('GET', basePath + 'favorite/');
 
-//收藏学生
-export const followerStudent = (data) => p('POST', basePath + 'follower/student/', data);
 // 获取投诉原因
 export const getReason = (data) => p('GET', basePath + 'reason/?type=' + data.type);
 // 提交投诉
