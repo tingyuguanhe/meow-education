@@ -5,7 +5,7 @@
   <!--基本信息  -->
   <view>
   <view class="section clearfix">
-    <view class="section__title photo_label">
+    <view class="photo_label">
     您的头像:</view>
     <view class="user_photo">
       <image class="photo" data-type="photo" catchtap="choosePhoto" src="{{photoUrl}}"></image>

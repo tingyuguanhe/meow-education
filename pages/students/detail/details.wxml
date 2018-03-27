@@ -26,12 +26,12 @@
       </view>
       <view class="applys">
         <image class="detail_icon" src="/images/apply.png"></image>
-        <text>{{infos.follower_count}}次申请</text>
+        <text>{{infos.apply_count}}次申请</text>
       </view>
     </view>
     <view class="masks clearfix">
       <block wx:for="{{infos.student_types}}" wx:for-index="studentTypeIndex" wx:key="index">
-        <view class="mask">{{item.student_type.name}}</view>
+        <view class="mask">{{item.name}}</view>
       </block>
     </view>
   </view>
@@ -57,10 +57,10 @@
     <view class="education_item">
       <text class="tip">学历要求：</text><text>{{ infos.require.name }}</text>
     </view>
-    
+    <!--教师特点  -->
     <view class="masks clearfix">
       <block wx:for="{{infos.teacher_types}}" wx:for-index="teacherTypeIndex" wx:key="index">
-        <view class="mask">{{item.teacher_type.name}}</view>
+        <view class="mask">{{item.name}}</view>
       </block>
     </view>
   </view>

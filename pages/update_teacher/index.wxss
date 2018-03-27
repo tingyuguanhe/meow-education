@@ -29,18 +29,20 @@
   border-radius:0 110px 110px 0;
   font-size:34rpx;
   text-align: center;
-  float: left;
+  color:#fff;
 }
 .section .photo_label{
   height: 90px;
   line-height: 90px;
+  float:left;
+  margin: 0 0 0 20px;
 }
 .user_photo{
   float:left;
   width: 90px;
   height: 90px;
   border:1px solid #ccc;
-  margin:10px 0 0 10px;
+  margin:0 0 0 10px;
 }
 .photo{
   width: 90px;

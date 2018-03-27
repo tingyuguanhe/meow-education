@@ -31,7 +31,7 @@
                   <view class="score color_888">高考{{teacher.high_score}}分</view>
                 </view>
                 <view class='courses'>
-                  <text wx:for="{{teacher.subjects}}" wx:for-index="courseIndex" wx:for-item="course" wx:key="index" class="course_item">{{course.subject.name}} </text>
+                  <text wx:for="{{teacher.subjects}}" wx:for-index="courseIndex" wx:for-item="course" wx:key="index" class="course_item">{{course.name}} </text>
                 </view>
             </navigator>
         </view>

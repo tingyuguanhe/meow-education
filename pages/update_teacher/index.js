@@ -1,6 +1,6 @@
 
 // index.js
-import { getTeacherDetail,getSchools, getEduBackground, getCourses, getTeacherType, registerTeacher } from '../../api/api.js'
+import { getTeacherDetail, getSchools, getEduBackground, getCourses, getTeacherType, updateTeacher } from '../../api/api.js'
 let app = getApp();
 Page({
 
@@ -44,13 +44,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
-    this.getTeaDetail(options.id);   //获取教师信息
     this.getSchoolsList();   //学校
-   
     this.getEduBackgroundList();  //学历
     this.getCoursesList();   //科目
     this.getTeacherTypeList();//教学特点
+    this.getTeaDetail(options.id);   //获取教师信息
 
   },
   //学历
@@ -155,7 +153,18 @@ Page({
       for (var i = 0; i < res.confirms.length;i++){
         this.resetImgs(res.confirms[i]);
       }
-      
+      var select_subject = [];
+      var select_feature = [];
+      for (var i = 0; i < res.subjects.length;i++){
+        select_subject.push((res.subjects[i].id).toString());
+      }
+      for (var i = 0; i < res.teacher_types.length; i++) {
+        select_feature.push((res.teacher_types[i].id).toString());
+      }
+
+      this.check_subject(select_subject, this.data.courses);   //课程
+      this.check_tea_feature(select_feature, this.data.features);//教学特点
+
       this.setData({
         infos: res,
         photoUrl: res.head_image,
@@ -218,15 +227,15 @@ Page({
       return;
     }
 
-    registerTeacher(val).then((res)=>{
-      //console.log('注册教师',res);
+    updateTeacher(val).then((res)=>{
+      //console.log('修改教师',res);
       if(res.status == 1){
         wx.showToast({
-          title: '恭喜，注册成功',
+          title: '恭喜，修改成功',
         })
         setTimeout(function(){
           wx.switchTab({
-            url: '../teachers/index',
+            url: '../user/index',
           })
         },2000)
         
@@ -279,9 +288,13 @@ Page({
     })
   },
   checkboxChange: function (e) {
-    var items = this.data.courses;
-    var checkArr = e.detail.value;
-   
+    this.check_subject(e.detail.value,this.data.courses);
+    this.setData({
+      selectCourse: e.detail.value
+    })
+  },
+  //勾选科目
+  check_subject: function (checkArr,items){
     for (var i = 0; i < items.length; i++) {
       if (checkArr.indexOf((items[i].id).toString()) != -1) {
         items[i].checked = true;
@@ -290,28 +303,27 @@ Page({
       }
     }
     this.setData({
-      courses: items,
-      selectCourse: e.detail.value
+      courses: items
     })
-      
-    //console.log(this.data.selectCourse);
   },
   featureCheckboxChange: function(e){
-    var items = this.data.features;
-    var checkArr = e.detail.value;
+    this.check_tea_feature(e.detail.value,this.data.features);
+    this.setData({
+      selectFeature: e.detail.value
+    })
+  },
+  //勾选教学特点
+  check_tea_feature: function (checkArr, items) {
     for (var i = 0; i < items.length; i++) {
-      if (checkArr.indexOf(items[i].id.toString()) != -1)            {
+      if (checkArr.indexOf((items[i].id).toString()) != -1) {
         items[i].checked = true;
       } else {
         items[i].checked = false;
       }
     }
     this.setData({
-      features: items,
-      selectFeature: e.detail.value
+      features: items
     })
-
-    //console.log(e.detail.value);
   },
   //选择教师头像
   choosePhoto: function(e){

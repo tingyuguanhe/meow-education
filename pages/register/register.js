@@ -274,10 +274,15 @@ Page({
       selecteEduBg: e.detail.value
     })
   },
+ 
   checkboxChange: function (e) {
-    var items = this.data.courses;
-    var checkArr = e.detail.value;
-   
+    this.check_subject(e.detail.value, this.data.courses);
+    this.setData({
+      selectCourse: e.detail.value
+    })
+  },
+  //选择科目
+  check_subject: function (checkArr, items) {
     for (var i = 0; i < items.length; i++) {
       if (checkArr.indexOf((items[i].id).toString()) != -1) {
         items[i].checked = true;
@@ -286,11 +291,8 @@ Page({
       }
     }
     this.setData({
-      courses: items,
-      selectCourse: e.detail.value
+      courses: items
     })
-      
-    //console.log(this.data.selectCourse);
   },
   featureCheckboxChange: function(e){
     var items = this.data.features;

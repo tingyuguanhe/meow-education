@@ -10,7 +10,7 @@
       <view class="courses">
         <text class="course_item_tip">课程：</text>
         <block wx:for="{{infos.subjects}}" wx:key="index" wx:for-index="subjectIndex">
-          <view class="course_item">{{item.subject.name}}</view>
+          <view class="course_item">{{item.name}}</view>
         </block>
       </view>
     </view>
@@ -36,8 +36,8 @@
     </view>
   </view>
     <view class="masks clearfix">
-      <block wx:for="{{teacher_types}}" wx:for-index="teaTypeIndex" wx:key="index">
-        <view class="mask">{{item.teacher_type.name}}</view>
+      <block wx:for="{{infos.teacher_types}}" wx:for-index="teaTypeIndex" wx:key="index">
+        <view class="mask">{{item.name}}</view>
       </block> 
     </view>
   </view>
@@ -62,6 +62,7 @@
     <view class="education_item">
       <text class="tip">专业：</text><text>{{infos.profession}}</text>
     </view>
+   
   </view>
   <!--自我介绍  -->
   <view class="self_intro_content">

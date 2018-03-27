@@ -28,6 +28,8 @@ export const getTeacherType = () => p('GET', basePath + 'teacher_type/');
 
 //注册教师
 export const registerTeacher = (data) => p('POST', basePath + 'teacher/',data);
+//修改教师
+export const updateTeacher = (data) => p('PUT', basePath + 'teacher/' + data.id +'/', data);
 
 //学生基础
 export const getStuBasis = () => p('GET', basePath + 'basis/');
