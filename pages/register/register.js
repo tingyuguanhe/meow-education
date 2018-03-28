@@ -168,7 +168,6 @@ Page({
     var val = e.detail.value;
     val.confirms = this.data.fileImgs;
     val.head_image = this.data.photoUrl;
-    
     if (app.trim(val.last_name).length == 0){
       this.showToast('请填写您的姓氏');
       return;

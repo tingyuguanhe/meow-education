@@ -65,7 +65,9 @@ Page({
     longitude: '',   //经度  
     latitude: '',    //纬度  
     address: '',     //地址  
-    cityInfo: {}     //城市信息 
+    cityInfo: {},     //城市信息 
+    photoUrl:'',
+    uploadUrl: 'http://114.112.75.135:7000/api/upload/'
   },
 
   /**
@@ -346,9 +348,51 @@ Page({
       icon: 'none'
     })
   },
+  //选择教师头像
+  choosePhoto: function (e) {
+   
+    var _this = this;
+    wx.chooseImage({
+      count: 1, // 允许上传的图片张数
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
+        var tempFilePaths = res.tempFilePaths;
+        //上传到服务器
+        _this.uploadimg(tempFilePaths[0]);
+      }
+    })
+  },
+  uploadimg: function (data) {
+    var _this = this;
+
+    wx.uploadFile({
+      url: _this.data.uploadUrl,
+      filePath: data,
+      name: 'file',//这里根据自己的实际情况改
+      // formData: null,
+      success: function (res) {
+        if (res.statusCode == 200) {
+          var Data = JSON.parse(res.data);
+          _this.setData({
+            photoUrl: Data.url
+          })
+            //console.log('头像', _this.data.photoUrl);
+        }
+      },
+
+      fail: function (err) {
+        console.log(err);
+      }
+
+    });
+  },
+  
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value);
     var val = e.detail.value;
+    val.head_image = this.data.photoUrl;
     if (app.trim(val.name).length == 0) {
       this.showToast('请填写您的称呼');
       return;

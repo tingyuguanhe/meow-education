@@ -3,7 +3,7 @@
 <!--基本信息  -->
   <view class='teacher_base_intro '>
     <view class="base_info clearfix">
-      <image class="teacher_img" src='/images/student.jpg'></image>
+      <image class="teacher_img" src='{{infos.head_image}}'></image>
       <view class="intro">
         <view class="name">{{infos.name}}</view>
         <view class="courses">{{infos.money}}/小时</view>
@@ -29,7 +29,7 @@
     </view>
     <view class="masks clearfix">
       <block wx:for="{{infos.student_types}}" wx:for-index="studentTypeIndex" wx:key="index">
-        <view class="mask">{{item.student_type.name}}</view>
+        <view class="mask">{{item.name}}</view>
       </block>
     </view>
   </view>
@@ -58,7 +58,7 @@
     
     <view class="masks clearfix">
       <block wx:for="{{infos.teacher_types}}" wx:for-index="teacherTypeIndex" wx:key="index">
-        <view class="mask">{{item.teacher_type.name}}</view>
+        <view class="mask">{{item.name}}</view>
       </block>
     </view>
   </view>
@@ -66,10 +66,6 @@
   <view class="self_intro_content">
     <view class="self_intro self_info">自我介绍：</view>
     <view class="self_info">{{infos.extra}}</view>
-  </view>
-  <!--footer  -->
-  <view class="footer">
-  已经到底啦！快给王同学发送申请吧
   </view>
 </view>
 

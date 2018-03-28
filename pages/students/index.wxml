@@ -24,8 +24,8 @@
                 <image class="photo_img" src="{{student.head_image}}" mode="widthFix"></image>
                 <view class="stu_info">
                   <view class="name">{{student.name}}</view>
-                  <view class="school color_888">地址：{{student.address}}</view>
-                  <view class="score color_888">补课时间：{{student.times}}</view>
+                  <view class="score">补课时间：<text class="color_888">{{student.times}}</text></view>
+                   <view class="school color_888">地址：{{student.address}}</view>
                 </view>
                 <view class='courses'>
                    <text wx:for="{{student.subjects}}" wx:for-index="courseIndex" wx:for-item="course" wx:key="index" class="course_item">{{course.name}} </text> 

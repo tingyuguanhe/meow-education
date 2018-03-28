@@ -37,7 +37,7 @@ body{overflow: auto;height: 100%;}
 }
 .photo_img{
   width: 150rpx;
-  height: 150rpx;
+  height: 150rpx !important;
   float: left;
 }
 .tea_info{

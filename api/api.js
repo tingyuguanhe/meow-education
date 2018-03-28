@@ -29,7 +29,7 @@ export const getTeacherType = () => p('GET', basePath + 'teacher_type/');
 //注册教师
 export const registerTeacher = (data) => p('POST', basePath + 'teacher/',data);
 //修改教师
-export const updateTeacher = (data) => p('PUT', basePath + 'teacher/' + data.id +'/', data);
+export const updateTeacher = (param, data) => p('PUT', basePath + 'teacher/' + param.id +'/', data);
 
 //学生基础
 export const getStuBasis = () => p('GET', basePath + 'basis/');
@@ -75,6 +75,8 @@ export const submitSuggestion = (data) => p('POST', basePath + 'suggestion/', da
 // 获取帮助
 export const getHelps = () => p('GET', basePath + 'help/');
 
+//发送申请
+export const submitApply = (data) => p('POST', basePath + 'apply/', data);
 
 
 

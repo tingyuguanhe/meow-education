@@ -13,6 +13,14 @@
 <!--基本信息  -->
 <view class="section">
     <view class="section__title bg">
+    您的头像</view>
+    <view class="user_photo">
+      <image class="photo" data-type="photo" catchtap="choosePhoto" src="{{photoUrl}}"></image>
+    
+    </view>
+</view>
+<view class="section">
+    <view class="section__title bg">
     基本信息</view>
     <view class="content">
     

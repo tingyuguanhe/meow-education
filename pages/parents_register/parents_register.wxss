@@ -30,6 +30,16 @@
   font-size:34rpx;
   text-align: center;
 }
+.user_photo{
+  width: 90px;
+  height: 90px;
+  border:1px solid #ccc;
+  margin:10px 0 0 10px;
+}
+.photo{
+  width: 90px;
+  height: 90px;
+}
 .section_item{
   padding:0 10px;
   margin:10px 0 0 0;

@@ -83,7 +83,7 @@ Page({
     isRegister: function(e){
       userIsRegister().then((res)=>{
         //console.log(res);
-        if (res.user_type == '未注册'){
+        if (res.user_type == 'no'){
           wx.showModal({
             title: '尚未注册',
             content: '注册后可更快找到合适的家教',
@@ -105,9 +105,9 @@ Page({
           var op_type = e.currentTarget.dataset.name;
           //我的发布
           if (op_type == 'publish'){
-            if (res.user_type == '教师') {
+            if (res.user_type == 'teacher') {
               url = "/pages/tea_publish/details";
-            } else if (res.user_type == '学生') {
+            } else if (res.user_type == 'student') {
               url = "/pages/stu_publish/details";
             }
             wx.navigateTo({

@@ -1,5 +1,5 @@
 // pages/teachers/details.js
-import { getStudentDetail, followerUser } from '../../../api/api.js'
+import { getStudentDetail, followerUser, userIsRegister, submitApply } from '../../../api/api.js'
 Page({
 
   /**
@@ -132,6 +132,41 @@ Page({
         })
       } 
     })
+  },
+  //发送申请
+  sendApply: function () {
+    userIsRegister().then((res) => {
+      //console.log(res);
+      if (res.user_type == '未注册') {
+        wx.showModal({
+          title: '尚未注册',
+          content: '注册后可更快找到合适的家教',
+          confirmText: '立即注册',
+          confirmColor: '#FF4D61',
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../register/register'//实际路径要写全
+              })
+            }
+          }
+
+        })
+      } else {
+        var reqData = {
+          target_id: this.data.stu_id,
+          target_type: 'teacher'
+        }
+        submitApply(reqData).then((res) => {
+          console.log('发送申请', res);
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          })
+        })
+      }
+    })
+
   }
 
   

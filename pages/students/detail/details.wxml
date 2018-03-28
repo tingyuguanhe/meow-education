@@ -3,7 +3,7 @@
 <!--基本信息  -->
   <view class='teacher_base_intro '>
     <view class="base_info clearfix">
-      <image class="teacher_img" src='/images/student.jpg'></image>
+      <image class="teacher_img" wx:if="{{!!infos.head_image}}" src='{{infos.head_image}}'></image>
       <view class="intro">
         <view class="name">{{infos.name}}</view>
         <view class="courses">{{infos.money}}/小时</view>
@@ -71,7 +71,7 @@
   </view>
   <!--footer  -->
   <view class="footer">
-  已经到底啦！快给王同学发送申请吧
+  已经到底啦！快给{{infos.name}}发送申请吧
   </view>
 </view>
 

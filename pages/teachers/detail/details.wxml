@@ -77,7 +77,7 @@
   </view>  
     <!--footer  -->
     <view class="footer">
-    已经到底啦！快给王老师发送申请吧
+    已经到底啦！快给{{infos.last_name}}老师发送申请吧
     </view>
 </view>
 

@@ -37,18 +37,22 @@ Page({
     uploadUrl: 'http://114.112.75.135:7000/api/upload/',
     fileImgs:[],
     temImgUrl:[],
-    infos:''
+    infos:'',
+    id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      id: options.id
+    })
     this.getSchoolsList();   //学校
     this.getEduBackgroundList();  //学历
     this.getCoursesList();   //科目
     this.getTeacherTypeList();//教学特点
-    this.getTeaDetail(options.id);   //获取教师信息
+    this.getTeaDetail(this.data.id);   //获取教师信息
 
   },
   //学历
@@ -226,8 +230,11 @@ Page({
       this.showToast('请选择教学特点');
       return;
     }
+    var reqData = {
+      id: this.data.id
+    }
 
-    updateTeacher(val).then((res)=>{
+    updateTeacher(reqData,val).then((res)=>{
       //console.log('修改教师',res);
       if(res.status == 1){
         wx.showToast({
