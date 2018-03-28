@@ -137,7 +137,7 @@ Page({
   sendApply: function () {
     userIsRegister().then((res) => {
       //console.log(res);
-      if (res.user_type == '未注册') {
+      if (res.user_type == 'no') {
         wx.showModal({
           title: '尚未注册',
           content: '注册后可更快找到合适的家教',
@@ -155,14 +155,20 @@ Page({
       } else {
         var reqData = {
           target_id: this.data.stu_id,
-          target_type: 'teacher'
+          target_type: 'student'
         }
         submitApply(reqData).then((res) => {
-          console.log('发送申请', res);
-          wx.showToast({
-            title: res.msg,
-            icon: 'none'
-          })
+          if (res.status == 1){
+            wx.showToast({
+              title: '恭喜，发送成功',
+              icon: 'none'
+            })
+          }else{
+            wx.showToast({
+              title: res.msg,
+              icon:'none'
+            })
+          }
         })
       }
     })
